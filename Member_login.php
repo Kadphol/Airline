@@ -21,24 +21,3 @@
         }
     }
 ?>
-<html>
-    <head>
-        <title>Member login page</title>
-    </head>
-    <body>
-        <div align = "center">
-            <div style = "width:300px; border: solid 1px #333333;" align = "left">
-                <div tyle = "margin:30px">
-                    <form action = "" method = "post">
-                        <label>Email :</label>
-                        <input type = "text" name = "email"><br><br>
-                        <label>Password :</label>
-                        <input type = "text" name = "password"><br><br>
-                        <input type = "submit" value = "Submit"><br><br>
-                    </form>
-                    <div style = "font-size:11px; color:#cc0000; margin-top:10px"><?php echo $error; ?></div>
-                </div>
-            </div>
-        </div>
-    </body>
-</html>
