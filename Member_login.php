@@ -1,7 +1,7 @@
 <?php #Member login form
     include("config.php"); #include database config
     session_start(); #start session
-
+    $error = "";
     if($_SERVER["REQUEST_METHOD"]=="POST") { 
         #get email and password from form
         $member_email = mysqli_real_escape_string($db,$_POST['email']);
