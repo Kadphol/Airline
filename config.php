@@ -1,5 +1,5 @@
 <?php #Database configuration file
-    define('DB_SERVER','111.223.52.146'); #Database server name
+    define('DB_SERVER','localhost'); #Database server name
     define('DB_USERNAME','zp11276_airlines'); #Database username
     define('DB_PASSWORD','FrameMarkKieSine123'); #Database password
     define('DB_DATABASE','zp11276_airline'); #Database name
