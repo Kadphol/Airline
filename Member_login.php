@@ -13,12 +13,11 @@
         $count = mysqli_num_rows($result);
         #check email and password
         if($count == 1) { #if result match email an password,table row must be 1
-            session_register("member_email");
             $_SESSION['login_member'] = $member_email; #create session for login member
             #successful login target page
-            header("location: welcome.php"); 
+            header("location: index.php"); 
         } else { #wrong email or password
-            $error = "Your Email or Password is invalid";
+            $error = "Your Email or Password is incorrect";
         }
     }
 ?>
