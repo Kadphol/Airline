@@ -24,13 +24,16 @@
 
     var email = $('#email').val();
     var password = $('#password').val();
+    console.log(email);
 
     $.ajax({
-    type: "POST",
-    url: "login.php",
-    data: "email="+email+"&password="+password,
-    }).done(function( msg ) {
-    alert( "Data Saved: " + msg );
+        type: "POST",
+        url: "/test/login.php",
+        data: email+password,
+        dataType: "text",
+        success: function (result, data) {
+            $('.output').html(data);
+        }
     });
     });
 </script>
