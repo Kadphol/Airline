@@ -1,0 +1,64 @@
+
+
+body {
+    font-family: 'Roboto', sans-serif;
+    overflow: hidden;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    background: linear-gradient(90deg, rgba(255,212,178,1) 0%, rgba(238,174,202,1) 48%, rgba(148,187,233,1) 100%);
+}
+
+.card-container {
+    margin-top: 10%;
+    margin-left: 17%;
+    margin-right: auto;
+    background-color: #ffffff;
+    border-radius: 5px;
+}
+
+.form-inline { 
+    margin-left: 60px;
+}
+
+.form-control {
+    margin-right: 40px;
+}
+
+.top-form {
+    margin-top: 10px;
+    margin-left: 60px;
+    margin-bottom: 2px;
+}
+
+.form-check-inline {
+    margin-top: 2%; 
+    margin-left: 7%;
+}
+
+.button-space {
+    margin-left: 500px;
+}
+
+.check-space {
+    padding-right: 100px;
+}
+
+.navbar-right{
+    margin-left: 70%;
+}
+
+.navbar-btn {
+    padding: 10px,20px;
+    width: 150px;
+    text-align: center;
+}
+
+.navbar-left{
+    margin-top: 10px;
+    margin-left: 5%;
+}
+
+.total{
+    margin-top: 10px;
+}
