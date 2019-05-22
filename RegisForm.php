@@ -59,7 +59,7 @@
 
                         <div class="form-row">
                             <div class="form-group col-md-2">
-                                <select name="Country" class="form-control">
+                                <select name="Country" class="form-control" id="Country">
                                     <option value="" Selected>--Country--</option>
                                     <option value="+66">+66</option>
                                     <option value="+81">+81</option>
@@ -84,18 +84,46 @@
 
 
 <script type = "text/javascript">
-    $(document).ready(function() {
-        $("#btnRegis").click(function() {
-           var email = $("#Email").val();
-           $.post("MemberRegis.php",{
-               email: email
-           }, function(data) {
-               if(data == "You have Successfully Registered.....") {
-                   $("#regisForm")[0].reset();
-                   alert(data);
-               }
-           });
+    $(document).ready(function() { //when document ready
+        $("#regisForm").submit(function(event) { //Form on submit
+            event.preventDefault(); //prevent default
+            var form_data = $(this).serialize(); //get form data
+            $.post("MemberRegis.php", form_data, function(response) { //send post data to php file
+                if(response === "success") { //when respone success
+                    window.location.href = "index.php"; //redirect to index
+                } else {
+                    console.log("wat?") 
+                }
+            }); 
         });
+        // $("#btnRegis").click(function() {
+        //    var email = $("#Email").val();
+        //    var password = $("#Passwprd").val();
+        //    var passport = $("#Passport").val();
+        //    var fname = $("#FirstName").val();
+        //    var lname = $("#LastName").val();
+        //    var sex = $("#sex").val();
+        //    var DOB = $("#DOB").val();
+        //    var country = $("#Country").val();
+        //    var phone = $("PhoneNumber").val();
+        //    $.post("MemberRegis.php",{
+        //        email: email,
+        //        password: password,
+        //        passport: passport,
+        //        fname: fanme,
+        //        lname: lname,
+        //        sex: sex,
+        //        DOB: DOB,
+        //        country: country,
+        //        phone: phone
+        //    }, function(data) {
+        //        if(data == "You have Successfully Registered.....") {
+        //            $("#regisForm")[0].reset();
+        //            alert(data);
+        //        }
+        //        alert(data);
+        //    });
+        // });
     });
 
 
