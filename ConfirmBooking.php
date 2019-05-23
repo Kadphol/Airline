@@ -2,12 +2,18 @@
 
 <head>
     <style>
-        #myTable {
-            border-collapse:collapse;
-            width: 40%;
-            border: 1px solid #ddd;
+table {
+            border-collapse: collapse;
+            width: 100%;
         }
-    </style>
+
+        td,
+        th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        </style>
 </head>
 
 <body>
@@ -50,7 +56,7 @@
 
     <h1>Booking ID : BB12090</h1>
     <h3>Flight 1 : Bangkok-Don Mueang Phitsanulok</h3>
-    <table id="myTable">
+    <table>
         <tr>
             <td>
                 <h4>FF3304</h4>
