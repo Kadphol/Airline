@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<html>
     <head>
         <title>Staff login</title>
         <style>
@@ -24,13 +24,13 @@
         <ul>
             <li>Login</li>
         </ul>
-        <form id='login' action='login.php' method='post' accept-charset='UTF-8'>
+        <form id='login' action='StaffLogin_php.php' method='post' accept-charset='UTF-8'>
             <div class="container">
-                <label for="email"><b>Email</b></label>
-                <input type="text" placeholder="Enter Email" name="email" required>
+                <label for="Email"><b>Email</b></label>
+                <input type="text" placeholder="Enter Email" name="Email" required>
 
-                <label for="psw"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="psw" required>
+                <label for="Password"><b>Password</b></label>
+                <input type="Password" placeholder="Enter Password" name="Password" required>
 
                 <button type="submit">Login</button>
                 </label>
