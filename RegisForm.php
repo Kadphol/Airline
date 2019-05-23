@@ -2,7 +2,7 @@
 <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 
 <!-- import style -->
-<link rel="stylesheet" type="text/css" href="StyleRegister.css">
+<link rel="stylesheet" type="text/css" href="DefaultStyle.css">
 
 <!-- font awesome -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
@@ -38,7 +38,7 @@
                         <input type="password" class="form-control form-center col-md-5" name="Password" id="Password" placeholder="Password">
                         <input type="password" class="form-control form-center col-md-5" name="ConPassword" id="ConPassword" placeholder="Confirm Password">
                         <input type="text" class="form-control form-center col-md-5" name="Passport" id="Passport" placeholder="Passport No.">
-                        <!--<span class = "error"><? echo $passportErr;?></span>-->  <!--show passport error-->S
+                        <!--<span class = "error"><? echo $passportErr;?></span>-->  <!--show passport error-->
                         <input type="text" class="form-control form-center col-md-5" name="FirstName" id="FirstName" placeholder="First Name">
                         <input type="text" class="form-control form-center col-md-5" name="LastName" id="LastName" placeholder="Last Name">
                         <!--<span class = "error"><? echo $nameErr;?></span>--><label> <!--show name error-->
