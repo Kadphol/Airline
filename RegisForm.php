@@ -27,7 +27,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
-        <div class="card-container col-md-8">
+        <div class="card-container col-md-8 bottom-margin">
             <div class="card-body">
                 <form method = "post" action = "" id="regisForm">
                     <h1><b>Register</b></h1>
