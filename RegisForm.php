@@ -27,7 +27,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
-        <div class="card-container col-md-8">
+        <div class="card-container col-md-8 bottom-margin">
             <div class="card-body">
                 <form method = "post" action = "" id="regisForm">
                     <h1><b>Register</b></h1>
@@ -38,7 +38,7 @@
                         <input type="password" class="form-control form-center col-md-5" name="Password" id="Password" placeholder="Password">
                         <input type="password" class="form-control form-center col-md-5" name="ConPassword" id="ConPassword" placeholder="Confirm Password">
                         <input type="text" class="form-control form-center col-md-5" name="Passport" id="Passport" placeholder="Passport No.">
-                        <!--<span class = "error"><? echo $passportErr;?></span>-->  <!--show passport error-->
+                        <!--<span class = "error"><? echo $passportErr;?></span>-->  <!--show passport error-->S
                         <input type="text" class="form-control form-center col-md-5" name="FirstName" id="FirstName" placeholder="First Name">
                         <input type="text" class="form-control form-center col-md-5" name="LastName" id="LastName" placeholder="Last Name">
                         <!--<span class = "error"><? echo $nameErr;?></span>--><label> <!--show name error-->
