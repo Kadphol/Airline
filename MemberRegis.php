@@ -40,7 +40,7 @@
         if (!mysqli_query($db,$query)) {
             die('Error: '.mysqli_error($db));
         } else{
-            $_SESSION['name'] = $fname;
+            $_SESSION['Mname'] = $fname;
             $_SESSION['success'] = "You are now loggin in";
             echo "success";
             #header('location: index.php');

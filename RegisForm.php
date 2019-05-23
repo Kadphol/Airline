@@ -96,7 +96,9 @@
                 }
             }); 
         });
-        // $("#btnRegis").click(function() {
+        
+    });
+// $("#btnRegis").click(function() {
         //    var email = $("#Email").val();
         //    var password = $("#Passwprd").val();
         //    var passport = $("#Passport").val();
@@ -124,8 +126,6 @@
         //        alert(data);
         //    });
         // });
-    });
-
 
 
      // $.ajax({
