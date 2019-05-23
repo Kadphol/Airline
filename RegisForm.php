@@ -2,7 +2,7 @@
 <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 
 <!-- import style -->
-<link rel="stylesheet" type="text/css" href="StyleRegister.css">
+<link rel="stylesheet" type="text/css" href="DefaultStyle.css">
 
 <!-- font awesome -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
@@ -27,7 +27,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
-        <div class="card-container col-md-8">
+        <div class="card-container col-md-8 bottom-margin">
             <div class="card-body">
                 <form method = "post" action = "" id="regisForm">
                     <h1><b>Register</b></h1>
@@ -96,7 +96,9 @@
                 }
             }); 
         });
-        // $("#btnRegis").click(function() {
+        
+    });
+// $("#btnRegis").click(function() {
         //    var email = $("#Email").val();
         //    var password = $("#Passwprd").val();
         //    var passport = $("#Passport").val();
@@ -124,8 +126,6 @@
         //        alert(data);
         //    });
         // });
-    });
-
 
 
      // $.ajax({

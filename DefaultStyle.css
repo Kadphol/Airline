@@ -2,11 +2,12 @@
 
 body {
     font-family: 'Roboto', sans-serif;
-    overflow: hidden;
+    overflow: scroll;
     position: absolute;
     text-align: center;
     width: 100%;
     background: linear-gradient(90deg, rgba(255,212,178,1) 0%, rgba(238,174,202,1) 48%, rgba(148,187,233,1) 100%);
+    bottom: 15%;
     height: 100%
 }
 
@@ -18,18 +19,20 @@ body {
     border-radius: 5px;
 }
 
-.form-inline { 
-    margin-left: 60px;
+.form-center {
+    margin-top: 5%;
+    margin-left: 27%;
+    margin-bottom: -2%;
+}
+
+.form-check-center {
+    margin-top: 5%;
+    margin-left: 40%;
+    margin-bottom: -2%;
 }
 
 .form-control {
-    margin-right: 40px;
-}
-
-.top-form {
-    margin-top: 10px;
-    margin-left: 60px;
-    margin-bottom: 2px;
+    margin-right: 0.25%;
 }
 
 .form-check-inline {
@@ -42,7 +45,7 @@ body {
 }
 
 .check-space {
-    padding-right: 100px;
+    padding-right: 50px;
 }
 
 .navbar-right{
@@ -64,3 +67,16 @@ body {
     margin-top: 10px;
 }
 
+.btn-sample { 
+    color: #ffffff; 
+    background-color: #611BBD; 
+    border-color: #130269; 
+  } 
+
+  .mini-describe{
+      font-size: 1em;
+  }
+
+  .bottom-margin{
+      margin-bottom: 100px;
+  }
