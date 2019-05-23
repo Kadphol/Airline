@@ -65,6 +65,16 @@
         #myTable tr:hover {
             background-color: #f1f1f1;
         }
+
+        #myInput {
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+            width: 25%;
+            font-size: 16px;
+            padding: 8px 20px 8px 15px;
+            border: 1px solid #ddd;
+            margin-bottom: 12px;
+        }
     </style>
 </head>
 
@@ -89,7 +99,11 @@
     </div>
 
     <div id="Flight" class="tabcontent">
-        <p>+ Add Flight</p>
+        <p>FlightID
+            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for FlightID.." title="Type in a name" />
+            &emsp;&emsp;&emsp;&emsp;&emsp;
+            + Add Flight
+        </p>
         <table id="myTable">
             <tr class="header">
                 <th>flight</th>
@@ -108,7 +122,7 @@
                 <td>Manage</td>
             </tr>
             <tr>
-                <td>FD3306</td>
+                <td>FD2106</td>
                 <td>DMK-CMK</td>
                 <td>Monday,Friday</td>
                 <td>HG-4483</td>
@@ -116,7 +130,7 @@
                 <td>Manage</td>
             </tr>
             <tr>
-                <td>FD3306</td>
+                <td>GG5506</td>
                 <td>DMK-CMK</td>
                 <td>Everyday</td>
                 <td>HG-4483</td>
@@ -127,7 +141,11 @@
     </div>
 
     <div id="Airplane" class="tabcontent">
-        <p>+ Add Airplane</p>
+        <p>FlightID
+            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for FlightID.." title="Type in a name" />
+            &emsp;&emsp;&emsp;&emsp;&emsp;
+            + Add Flight
+        </p>
         <table id="myTable">
             <tr class="header">
                 <th>AirplaneID</th>
@@ -144,14 +162,14 @@
                 <td>Manage</td>
             </tr>
             <tr>
-                <td>HG-345</td>
+                <td>HG-123</td>
                 <td>10-01-2010</td>
                 <td>BOEING777</td>
                 <td>A</td>
                 <td>Manage</td>
             </tr>
             <tr>
-                <td>HG-345</td>
+                <td>BB-345</td>
                 <td>10-01-2010</td>
                 <td>BOEING777</td>
                 <td>A</td>
@@ -161,10 +179,13 @@
     </div>
 
     <div id="Staff" class="tabcontent">
-        <p>+ Add Staff</p>
+        <p>StaffID
+            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for StaffID.." title="Type in a name" />
+            &emsp;&emsp;&emsp;&emsp;&emsp;
+            + Add Staff
+        </p>
         <table id="myTable">
             <tr class="header">
-                <th>Staff</th>
                 <th>StaffID</th>
                 <th>AirportID</th>
                 <th>Name</th>
@@ -179,14 +200,14 @@
                 <td>Manage</td>
             </tr>
             <tr>
-                <td>S12345</td>
+                <td>S56565</td>
                 <td>HG-678</td>
                 <td>Kiekie Eiei</td>
                 <td>Staff</td>
                 <td>Manage</td>
             </tr>
             <tr>
-                <td>S12345</td>
+                <td>S99999</td>
                 <td>HG-678</td>
                 <td>Kiekie Eiei</td>
                 <td>Staff</td>
@@ -209,7 +230,27 @@
             document.getElementById(cityName).style.display = "block";
             evt.currentTarget.className += " active";
         }
+
+        function myFunction() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
     </script>
+
 </body>
 
 </html>
