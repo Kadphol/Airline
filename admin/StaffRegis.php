@@ -1,7 +1,7 @@
 <html>
     <body>
         <h1>Staff Regis Form</h1>
-        <form>
+        <form action="StaffRegis_php.php" method="post">
             <h3>Profile</h3>
             <input type="text" name="AirportID" placeholder="AirportID"> <br><br>
             <input type="email" name="Email" placeholder="Email"> <br><br>
@@ -21,12 +21,8 @@
                 <option value="+48">+48</option>
             </select>
             <input type="tel" name="PhoneNumber" placeholder="Phone Number"><br><br>
-            <input type="text" name="StreetAdd" placeholder="Street Address"> <br><br>
-            <input type="text" name="Country" placeholder="Country">
-            <input type="text" name="PostalCode" placeholder="Postal Code"> <br><br>
-            <input type="text" name="City" placeholder="City">
-            <input type="text" name="State" placeholder="State/Province"> <br><br>
-
+            <input type="text" name="Address" placeholder="Address"> <br><br>
+            <input type="text" name="Position" placeholder="Position"> <br><br>
 
             <input type="submit" value="Sign Up">
         </form>
