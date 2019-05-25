@@ -1,6 +1,24 @@
 <?php
-    #include("config/config.php");
-    $db = mysqli_connect("localhost","root","","airline");
+session_start();
+#include("config/config.php");
+$db = mysqli_connect("localhost", "root", "", "airline");
+$query = mysqli_query($db, "SELECT * FROM airport");
+while ($result = mysqli_fetch_array($query)) {
+    if ($result['AirportID'] == $_SESSION['AirportID']) {
+        $myAirportID = $result['AirportID'];
+        $myAirportName = $result['AirportName'];
+        $Address = $result['Address'];
+        $Tax = $result['AirportTax'];
+    }
+}
+$query3 = mysqli_query($db, "SELECT * FROM staff");
+while ($result3 = mysqli_fetch_array($query3)) {
+    $StaffID[] = $result3['StaffID'];
+    $AirportID[] = $result3['AirportID'];
+    $FirstName[] = $result3['FirstName'];
+    $LastName[] = $result3['LastName'];
+    $Position[] = $result3['Position'];
+}
 ?>
 <html>
 
@@ -88,13 +106,11 @@
     <p>Edit</p>
     <hr>
     <h3>AirportID&emsp;&emsp;AirportName</h3>
-    <p>DMK&emsp;&emsp;&emsp;&emsp;Donmueng</p>
+    <p><?php echo $myAirportID ?>&emsp;&emsp;&emsp;&emsp;<?php echo $myAirportName ?></p>
     <h3>Street Address</h3>
-    <p>3/100 The Cube Pracha Uthit B Building Soi Pracha Uthit 37</p>
-    <h3>Country&emsp;&emsp;Postal Code&emsp;&emsp;&emsp;&emsp;City&emsp;&emsp;State/Province</h3>
-    <p>Thailand&emsp;&emsp;&emsp;10140&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Bangkok&emsp;&emsp;Ratchaburana</p>
+    <p><?php echo $Address ?></p>
     <h3>Airport Tax</h3>
-    <p>244.48 THB</p>
+    <p><?php echo $Tax ?> THB</p>
 
     <div class="tab">
         <button class="tablinks" onclick="openCity(event, 'Flight')">Flight</button>
@@ -106,7 +122,7 @@
         <p>FlightID
             <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for FlightID.." title="Type in a name" />
             &emsp;&emsp;&emsp;&emsp;&emsp;
-            + Add Flight
+            <input type="button" value="+Add Flight" onclick="window.location.href = 'AddFlight.php'">
         </p>
         <table id="myTable">
             <tr class="header">
@@ -148,7 +164,7 @@
         <p>AirplaneID
             <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for AirplaneID.." title="Type in a name" />
             &emsp;&emsp;&emsp;&emsp;&emsp;
-            + Add Airplane
+            <input type="button" value="+Add Airplane" onclick="window.location.href = 'AddAirplane.php'">
         </p>
         <table id="myTable">
             <tr class="header">
@@ -186,7 +202,7 @@
         <p>StaffID
             <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for StaffID.." title="Type in a name" />
             &emsp;&emsp;&emsp;&emsp;&emsp;
-            + Add Staff
+            <input type="button" value="+Add Staff" onclick="window.location.href = 'StaffRegis.php'">
         </p>
         <table id="myTable">
             <tr class="header">
@@ -196,65 +212,51 @@
                 <th>Position</th>
                 <th> </th>
             </tr>
-            <tr>
-                <td>S12345</td>
-                <td>HG-678</td>
-                <td>Kiekie Eiei</td>
-                <td>Staff</td>
-                <td>Manage</td>
-            </tr>
-            <tr>
-                <td>S56565</td>
-                <td>HG-678</td>
-                <td>Kiekie Eiei</td>
-                <td>Staff</td>
-                <td>Manage</td>
-            </tr>
-            <tr>
-                <td>S99999</td>
-                <td>HG-678</td>
-                <td>Kiekie Eiei</td>
-                <td>Staff</td>
-                <td>Manage</td>
-            </tr>
+            <?php for ($i = 0; $i < sizeof($StaffID); $i++) { ?>
+                <tr>
+                    <td><?php echo $StaffID[$i] ?></td>
+                    <td><?php echo $AirportID[$i] ?></td>
+                    <td><?php echo $FirstName[$i] . " " . $LastName[$i] ?></td>
+                    <td><?php echo $Position[$i] ?></td>
+                </tr>
+            <?php } ?>
         </table>
     </div>
 
-    <script>
-        function openCity(evt, cityName) {
-            var i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("tabcontent");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = "none";
-            }
-            tablinks = document.getElementsByClassName("tablinks");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].className = tablinks[i].className.replace(" active", "");
-            }
-            document.getElementById(cityName).style.display = "block";
-            evt.currentTarget.className += " active";
+</body>
+<script>
+    function openCity(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
         }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
 
-        function myFunction() {
-            var input, filter, table, tr, td, i, txtValue;
-            input = document.getElementById("myInput");
-            filter = input.value.toUpperCase();
-            table = document.getElementById("myTable");
-            tr = table.getElementsByTagName("tr");
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[0];
-                if (td) {
-                    txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = "";
-                    } else {
-                        tr[i].style.display = "none";
-                    }
+    function myFunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
                 }
             }
         }
-    </script>
-
-</body>
+    }
+</script>
 
 </html>
