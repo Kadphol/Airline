@@ -5,7 +5,8 @@
     if (mysqli_connect_errno()) {
         echo "Failed to connect to MySQL: " . mysqli_connect_error();
         }
-    #error_reporting(~E_NOTICE);
+    
+    //error_reporting(~E_NOTICE);
     $AirportID = mysqli_real_escape_string($db, $_POST["AirportID"]);
     $Email = mysqli_real_escape_string($db, $_POST["Email"]);
     $Password = mysqli_real_escape_string($db, $_POST["Password"]);
@@ -25,8 +26,5 @@
 if (!mysqli_query($db,$sql)) {
     die('Error: ' . mysqli_error($db));
     }
-    //echo "record added";
     header('location: WelcomeStaff.php');
-    exit(0);
-
 ?>
