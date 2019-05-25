@@ -1,5 +1,5 @@
 <?php
-    #include("admin/config/config.php");
+    #include("config/config.php");
     $db = mysqli_connect("localhost","root","","airline");
     if(isset($_SESSION['StaffID'])) {
         $id = $_SESSION['StaffID'];
