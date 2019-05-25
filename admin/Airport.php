@@ -1,4 +1,22 @@
-<!DOCTYPE html>
+<?php
+    session_start();
+    #include("config/config.php");
+    $db = mysqli_connect("localhost", "root", "", "airline");
+    if (mysqli_connect_errno()) {
+        echo "Failed to connect to MySQL: " . mysqli_connect_error();
+    }
+    $query = mysqli_query($db, "SELECT AirportID, AirportName FROM airport");
+    while ($result = mysqli_fetch_array($query)) {
+        $AirportID[] = $result['AirportID'];
+        $AirportName[] = $result['AirportName'];
+        if($result['AirportID'] == $_SESSION['AirportID']){
+            $myAirportID = $result['AirportID'];
+            $myAirportName = $result['AirportName'];
+        }
+    }
+
+?>
+
 <html>
 
 <head>
@@ -19,7 +37,7 @@
         }
 
         #myTable {
-            border-collapse:collapse;
+            border-collapse: collapse;
             width: 60%;
             border: 1px solid #ddd;
             font-size: 18px;
@@ -44,51 +62,25 @@
 
 <body>
     <h1>Airport</h1>
-    <p>AirportID : DMK &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;DonMueng International Airport</p>
+    <p>AirportID : <?php echo $myAirportID?> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<?php echo $myAirportName?></p>
     <hr>
     <br>
     <p>AirportID/AirportName&emsp;
-    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Airport.." title="Type in a name" />
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Airport.." title="Type in a name" />
     </p>
     <table id="myTable">
         <tr class="header">
             <th style="width:30%;">AirportID</th>
             <th style="width:60%;">Airport Name</th>
         </tr>
-        <tr>
-            <td>DMK</td>
-            <td>Donmueng International Airport</td>
-        </tr>
-        <tr>
-            <td>ARN</td>
-            <td>Stockholm-Arlanda Airport</td>
-        </tr>
-        <tr>
-            <td>CSX</td>
-            <td>Changsha Huanghua International Airport</td>
-        </tr>
-        <tr>
-            <td>LAX</td>
-            <td>Los Angeles International Airport</td>
-        </tr>
-        <tr>
-            <td>MAN</td>
-            <td>Manchester Airport</td>
-        </tr>
-        <tr>
-            <td>YYZ</td>
-            <td>Toronto Pearson International Airport</td>
-        </tr>
-        <tr>
-            <td>ORD</td>
-            <td>O'Hare International Airport</td>
-        </tr>
-        <tr>
-            <td>SAN</td>
-            <td>San Diego International Airport</td>
-        </tr>
-    </table>
+        <?php for ($i = 0; $i<sizeof($AirportID); $i++){?>
+            <tr>
+                <td><?php echo $AirportID[$i] ?></td>
+                <td><?php echo $AirportName[$i] ?></td>
+            </tr>
+        <?php } ?>
 
+    </table>
     <script>
         function myFunction() {
             var input, filter, table, tr, td, i, txtValue;
@@ -104,14 +96,14 @@
                     txtValue_1 = td_1.textContent || td_1.innerText;
                     if (txtValue_0.toUpperCase().indexOf(filter) > -1 || txtValue_1.toUpperCase().indexOf(filter) > -1) {
                         tr[i].style.display = "";
-                    }    
-                    else {
+                    } else {
                         tr[i].style.display = "none";
                     }
                 }
             }
         }
     </script>
+
 </body>
 
 </html>
