@@ -19,6 +19,7 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
 
+
 <html>
     <body style="bottom: 0%">
             <div class="card-container col-md-8">
@@ -30,11 +31,13 @@
                                 <div class="row">
                                     <div class="form-group col-md-6 pl-1 pr-2">
                                         <label>Departure Airport</label>
-                                        <input type="text" name="Departure" class="form-control" placeholder="Departure Airport">
+                                        <input type="text" name="Departure" class="form-control" id="departure_airport" placeholder="Departure Airport">
+                                        <ul id="DsearchResult"></ul>
                                     </div>
                                     <div class="form-group col-md-6 pl-1">
                                         <label>Arrival Airport</label>
-                                        <input type="text" name="Arrival" class="form-control" placeholder="Arrival Airport">
+                                        <input type="text" name="Arrival" class="form-control" id="arrival_airport" placeholder="Arrival Airport">
+                                        <ul id="AsearchResult"></ul>
                                     </div>
                                 </div>
                         </div>
@@ -82,3 +85,28 @@
             </div>
     </body>
 </html>
+<script>
+    $(document).ready(function(){
+        $("#departue_airport").keyup(function() {
+            var search = $(this).val();
+            console.log(search);
+            if(search != "") {
+                $.ajax({
+                    url: 'search.php',
+                    type: 'post',
+                    data: {search:search},
+                    dataType: 'json',
+                    success: function(response) {
+                        var len = response.length;
+                        $("#DsearchResult").empty();
+                        for( var i = 0; i<len; i++) {
+                            var id = response[i]['id'];
+                            var airport = response[i]['value'];
+                            $("#DsearchResult").append("<li value='"+id+"'>"+airport+"</li>");
+                        }
+                    }
+                });
+            }
+        });
+    });
+</script>
