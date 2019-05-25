@@ -21,7 +21,7 @@
         &emsp;Date of Birth<br>
         &emsp;31/10/1999<br><br>
         &emsp;Phone Number<br>
-        &emsp;(+66)65445620
+        &emsp;(+66)65445620<br><br>
     </p>
 </body>
 
