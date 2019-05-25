@@ -17,70 +17,68 @@
 
 ?>
 
+<!-- import font roboto -->
+<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+
+<!-- import style -->
+<link rel="stylesheet" type="text/css" href="StaffStyle.css">
+
+<!-- font awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
 <html>
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        #myInput {
-            background-position: 10px 10px;
-            background-repeat: no-repeat;
-            width: 25%;
-            font-size: 16px;
-            padding: 8px 20px 8px 15px;
-            border: 1px solid #ddd;
-            margin-bottom: 12px;
-        }
-
-        #myTable {
-            border-collapse: collapse;
-            width: 60%;
-            border: 1px solid #ddd;
-            font-size: 18px;
-        }
-
-        #myTable th,
-        #myTable td {
-            text-align: left;
-            padding: 12px;
-        }
-
-        #myTable tr {
-            border-bottom: 1px solid #ddd;
-        }
-
-        #myTable tr.header,
-        #myTable tr:hover {
-            background-color: #f1f1f1;
-        }
-    </style>
+    <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
-    <h1>Airport</h1>
-    <p>AirportID : <?php echo $myAirportID?> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<?php echo $myAirportName?></p>
-    <hr>
-    <br>
-    <p>AirportID/AirportName&emsp;
-        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Airport.." title="Type in a name" />
-    </p>
-    <table id="myTable">
-        <tr class="header">
-            <th style="width:30%;">AirportID</th>
-            <th style="width:60%;">Airport Name</th>
-        </tr>
-        <?php for ($i = 0; $i<sizeof($AirportID); $i++){?>
-            <tr>
-                <td><?php echo $AirportID[$i] ?></td>
-                <td><?php echo $AirportName[$i] ?></td>
-            </tr>
-        <?php } ?>
+    <div class="row justify-content-center">
+        <div class="card-container col-md-8">
+            <div class="card-body">
+                <h1><b>Airport</b></h1>
+                <li class="list-group-item list-group-item-secondary">AirportID : <?php echo $myAirportID?> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<?php echo $myAirportName?></li>
+                <hr>
+                <div class="form-group row">
+                    <div class="col-sm-3">
+                        <label class="offset-md-2 py-1"><b>AirportID/AirportName</b></label>
+                    </div>
+                    <div class="col-sm-8 justify-content-left">
+                        <input type="text" id="myInput" onkeyup="myFunction()" class="form-control" placeholder="Search for Airport.." title="Type in a name" />
+                    </div>
+                </div>
 
-    </table>
+                <table  class="table">
+                    <tr>
+                        <th>AirportID</th>
+                        <th>Airport Name</th>
+                    </tr>
+                    <?php for ($i = 0; $i<sizeof($AirportID); $i++){?>
+                        <tr>
+                            <td><?php echo $AirportID[$i] ?></td>
+                            <td><?php echo $AirportName[$i] ?></td>
+                        </tr>
+                    <?php } ?>
+
+                </table>
+            </div>
+        </div>
+    </div>
+   
     <script>
         function myFunction() {
             var input, filter, table, tr, td, i, txtValue;
