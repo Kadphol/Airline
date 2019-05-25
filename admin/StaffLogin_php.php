@@ -12,6 +12,7 @@
     $check = mysqli_query($db,"SELECT * FROM staff WHERE Email = '".$_POST['Email']."' AND Password = '".$_POST['Password']."'");
     if($result=mysqli_fetch_array($check)){
         $_SESSION['StaffID'] = $result['StaffID'];
+        $_SESSION['AirportID'] = $result['AirportID'];
         $_SESSION['Position'] = $result['Position'];
         header('location: WelcomeStaff.php');
     }
