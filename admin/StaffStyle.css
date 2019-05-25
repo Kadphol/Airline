@@ -78,4 +78,33 @@ body {
       margin-bottom: 100px;
   }
 
+  .button-item{
+      background-color: #ffffff;
+      height: 150px;
+      width:100%;
+      cursor: pointer;
+      margin: 5px;
+      text-align: center;
+      border-style: solid;
+      border-width: 1px;
+      border-color: #ffffff;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  .button-header{
+    padding-top: 25px;
+    font-size:60px;
+  }
+
+  i {
+    background: linear-gradient(to right, #7f7fd5, #86a8e7, #91eae4);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+  }
+
+  .button-bottom{
+    font-size: 15px;
+    font-weight: bold;
+  }
+
  
