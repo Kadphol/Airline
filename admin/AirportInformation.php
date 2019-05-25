@@ -1,3 +1,7 @@
+<?php
+    #include("config/config.php");
+    $db = mysqli_connect("localhost","root","","airline");
+?>
 <html>
 
 <head>
@@ -141,10 +145,10 @@
     </div>
 
     <div id="Airplane" class="tabcontent">
-        <p>FlightID
-            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for FlightID.." title="Type in a name" />
+        <p>AirplaneID
+            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for AirplaneID.." title="Type in a name" />
             &emsp;&emsp;&emsp;&emsp;&emsp;
-            + Add Flight
+            + Add Airplane
         </p>
         <table id="myTable">
             <tr class="header">
