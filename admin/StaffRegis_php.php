@@ -26,5 +26,5 @@
 if (!mysqli_query($db,$sql)) {
     die('Error: ' . mysqli_error($db));
     }
-    header('location: WelcomeStaff.php');
+    header('location: AirportInformation.php');
 ?>
