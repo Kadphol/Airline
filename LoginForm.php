@@ -8,11 +8,11 @@
         <div align = "center">
             <div style = "width:300px; border: solid 1px #333333;" align = "left">
                 <div tyle = "margin:30px">
-                    <form action = "" method = "post" id = "loginform">
+                    <form action = "MemberLogin.php" method = "post" id = "loginform">
                         <label>Email :</label>
                         <input type = "text" name = "email" id = "email"><br><br>
                         <label>Password :</label>
-                        <input type = "text" name = "password" id = "password"><br><br>
+                        <input type = "Password" name = "password" id = "password"><br><br>
                         <input type = "submit" value = "login"><br><br>
                         <a href = "RegisForm.php">Register</a><br><br>
                     </form>

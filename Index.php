@@ -19,7 +19,9 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
 
-
+<?
+    session_start();
+?>
 <html>
     <body style="bottom: 0%">
             <div class="card-container col-md-8">
@@ -89,7 +91,6 @@
     $(document).ready(function(){
         $("#departue_airport").keyup(function() {
             var search = $(this).val();
-            console.log(search);
             if(search != "") {
                 $.ajax({
                     url: 'search.php',
