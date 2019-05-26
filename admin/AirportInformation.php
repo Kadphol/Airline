@@ -2,7 +2,7 @@
 session_start();
 #include("config/config.php");
 $db = mysqli_connect("localhost", "root", "", "airline");
-$query = mysqli_query($db, "SELECT * FROM airport");
+$query = mysqli_query($db, "SELECT * FROM Airport");
 while ($result = mysqli_fetch_array($query)) {
     if ($result['AirportID'] == $_SESSION['AirportID']) {
         $myAirportID = $result['AirportID'];
@@ -11,6 +11,25 @@ while ($result = mysqli_fetch_array($query)) {
         $Tax = $result['AirportTax'];
     }
 }
+// Route
+$query1 = mysqli_query($db, "SELECT * FROM route");
+while ($result1 = mysqli_fetch_array($query1)) {
+    $RouteID[] = $result1['RouteID'];
+    $Origin[] = $result1['Origin'];
+    $Destination[] = $result1['Destination'];
+    $Miles[] = $result1['Miles'];
+}
+//Flight
+$query2 = mysqli_query($db, "SELECT * FROM Flight f JOIN Route r ON f.RouteID=r.RouteID ");
+while ($result2 = mysqli_fetch_array($query2)) {
+    $FlightID[] = $result2['FlightID'];
+    $OriginFlight[] = $result2['Origin'];
+    $DestinationFlight[] = $result2['Destination'];
+    $DOO[] = $result2['DOO'];
+    $FAirplaneID[] = $result2['AirplaneID'];
+    $StatusFlight[] = $result2['Status'];
+}
+//Staff
 $query3 = mysqli_query($db, "SELECT * FROM staff");
 while ($result3 = mysqli_fetch_array($query3)) {
     $StaffID[] = $result3['StaffID'];
@@ -18,6 +37,14 @@ while ($result3 = mysqli_fetch_array($query3)) {
     $FirstName[] = $result3['FirstName'];
     $LastName[] = $result3['LastName'];
     $Position[] = $result3['Position'];
+}
+//Airplane
+$query4 = mysqli_query($db, "SELECT * FROM airplane");
+while ($result4 = mysqli_fetch_array($query4)) {
+    $AirplaneID[] = $result4['AirplaneID'];
+    $RegisterDate[] = $result4['RegisterDate'];
+    $ModelNo[] = $result4['ModelNo'];
+    $StatusAirplane[] = $result4['Status'];
 }
 ?>
 <html>
@@ -66,29 +93,29 @@ while ($result3 = mysqli_fetch_array($query3)) {
             border-top: none;
         }
 
-        #myTable {
+        .myTable {
             border-collapse: collapse;
             width: 100%;
             border: 1px solid #ddd;
             font-size: 18px;
         }
 
-        #myTable th,
-        #myTable td {
+        .myTable th,
+        .myTable td {
             text-align: left;
             padding: 12px;
         }
 
-        #myTable tr {
+        .myTable tr {
             border-bottom: 1px solid #ddd;
         }
 
-        #myTable tr.header,
-        #myTable tr:hover {
+        .myTable tr.header,
+        .myTable tr:hover {
             background-color: #f1f1f1;
         }
 
-        #myInput {
+        .myInput {
             background-position: 10px 10px;
             background-repeat: no-repeat;
             width: 25%;
@@ -120,133 +147,94 @@ while ($result3 = mysqli_fetch_array($query3)) {
 
     <div id="Route" class="tabcontent">
         <p>RouteID
-            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for RouteID.." title="Type in a name" />
+            <input type="text" class="myInput" onkeyup="myFunction(0)" placeholder="Search for RouteID.." title="Type in a name" />
             &emsp;&emsp;&emsp;&emsp;&emsp;
             <input type="button" value="+Add Route" onclick="window.location.href = 'AddRoute.php'">
         </p>
-        <table id="myTable">
+        <table class="myTable">
             <tr class="header">
-                <th>flight</th>
-                <th>Route</th>
-                <th>Day of Oparation</th>
-                <th>AirplanID</th>
-                <th>Active</th>
-                <th> </th>
+                <th>RouteID</th>
+                <th>Origin</th>
+                <th>Destination</th>
+                <th>Miles</th>
+                <!-- <th> </th> -->
             </tr>
-            <tr>
-                <td>FD3306</td>
-                <td>DMK-CMK</td>
-                <td>Monday,Friday</td>
-                <td>HG-4483</td>
-                <td>A</td>
-                <td>Manage</td>
-            </tr>
-            <tr>
-                <td>FD2106</td>
-                <td>DMK-CMK</td>
-                <td>Monday,Friday</td>
-                <td>HG-4483</td>
-                <td>A</td>
-                <td>Manage</td>
-            </tr>
-            <tr>
-                <td>GG5506</td>
-                <td>DMK-CMK</td>
-                <td>Everyday</td>
-                <td>HG-4483</td>
-                <td>A</td>
-                <td>Manage</td>
-            </tr>
+            <?php for ($i = 0; $i < sizeof($RouteID); $i++) { ?>
+                <tr>
+                    <td><?php echo $RouteID[$i] ?></td>
+                    <td><?php echo $Origin[$i] ?></td>
+                    <td><?php echo $Destination[$i] ?></td>
+                    <td><?php echo $Miles[$i] ?></td>
+                    <!-- <td>Manage</td> -->
+                </tr>
+            <?php } ?>
+ 
         </table>
     </div>
 
     <div id="Flight" class="tabcontent">
         <p>FlightID
-            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for FlightID.." title="Type in a name" />
+            <input type="text" class="myInput" onkeyup="myFunction(1)" placeholder="Search for FlightID.." title="Type in a name" />
             &emsp;&emsp;&emsp;&emsp;&emsp;
             <input type="button" value="+Add Flight" onclick="window.location.href = 'AddFlight.php'">
         </p>
-        <table id="myTable">
+        <table class="myTable">
             <tr class="header">
-                <th>flight</th>
+                <th>FlightID</th>
                 <th>Route</th>
                 <th>Day of Oparation</th>
-                <th>AirplanID</th>
-                <th>Active</th>
-                <th> </th>
+                <th>AirplaneID</th>
+                <th>Status</th>
+                <!-- <th> </th> -->
             </tr>
-            <tr>
-                <td>FD3306</td>
-                <td>DMK-CMK</td>
-                <td>Monday,Friday</td>
-                <td>HG-4483</td>
-                <td>A</td>
-                <td>Manage</td>
-            </tr>
-            <tr>
-                <td>FD2106</td>
-                <td>DMK-CMK</td>
-                <td>Monday,Friday</td>
-                <td>HG-4483</td>
-                <td>A</td>
-                <td>Manage</td>
-            </tr>
-            <tr>
-                <td>GG5506</td>
-                <td>DMK-CMK</td>
-                <td>Everyday</td>
-                <td>HG-4483</td>
-                <td>A</td>
-                <td>Manage</td>
-            </tr>
+            <?php for ($i = 0; $i < sizeof($FlightID); $i++) { ?>
+                <tr>
+                    <td><?php echo $FlightID[$i] ?></td>
+                    <td><?php echo $OriginFlight[$i]." - ".$DestinationFlight[$i] ?></td>
+                    <td><?php echo $DOO[$i] ?></td>
+                    <td><?php echo $FAirplaneID[$i] ?></td>
+                    <td><?php if($StatusFlight[$i]=='n'){echo "Not Active";}
+                                else{echo "Active";} ?></td>
+                    <!-- <td>Manage</td> -->
+                </tr>
+            <?php } ?>
         </table>
     </div>
 
     <div id="Airplane" class="tabcontent">
         <p>AirplaneID
-            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for AirplaneID.." title="Type in a name" />
+            <input type="text" class="myInput" onkeyup="myFunction(2)" placeholder="Search for AirplaneID.." title="Type in a name" />
             &emsp;&emsp;&emsp;&emsp;&emsp;
             <input type="button" value="+Add Airplane" onclick="window.location.href = 'AddAirplane.php'">
         </p>
-        <table id="myTable">
+        <table class="myTable">
             <tr class="header">
                 <th>AirplaneID</th>
                 <th>Register Date</th>
                 <th>Model No.</th>
-                <th>Active</th>
-                <th> </th>
+                <th>Status</th>
+                <!-- <th> </th> -->
             </tr>
-            <tr>
-                <td>HG-345</td>
-                <td>10-01-2010</td>
-                <td>BOEING777</td>
-                <td>A</td>
-                <td>Manage</td>
-            </tr>
-            <tr>
-                <td>HG-123</td>
-                <td>10-01-2010</td>
-                <td>BOEING777</td>
-                <td>A</td>
-                <td>Manage</td>
-            </tr>
-            <tr>
-                <td>BB-345</td>
-                <td>10-01-2010</td>
-                <td>BOEING777</td>
-                <td>A</td>
-                <td>Manage</td>
-            </tr>
+            <?php for ($i = 0; $i < sizeof($AirplaneID); $i++) { ?>
+                <tr>
+                    <td><?php echo $AirplaneID[$i] ?></td>
+                    <td><?php echo $RegisterDate[$i] ?></td>
+                    <td><?php echo $ModelNo[$i] ?></td>
+                    <td><?php if($StatusAirplane[$i]=='n'){echo "Not Active";}
+                                else{echo "Active";} ?></td>
+                    <!-- <td>Manage</td> -->
+                </tr>
+            <?php } ?>
         </table>
     </div>
 
     <div id="Staff" class="tabcontent">
         <p>StaffID
-            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for StaffID.." title="Type in a name" />
+            <input type="text" class="myInput" onkeyup="myFunction(3)" placeholder="Search for StaffID.." title="Type in a name" />
             &emsp;&emsp;&emsp;&emsp;&emsp;
             <input type="button" value="+Add Staff" onclick="window.location.href = 'StaffRegis.php'">
         </p>
-        <table id="myTable">
+        <table class="myTable">
             <tr class="header">
                 <th>StaffID</th>
                 <th>AirportID</th>
@@ -281,12 +269,13 @@ while ($result3 = mysqli_fetch_array($query3)) {
         evt.currentTarget.className += " active";
     }
 
-    function myFunction() {
+    function myFunction(i) {
         var input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById("myInput");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("myTable");
-        tr = table.getElementsByTagName("tr");
+        input = document.getElementsByClassName("myInput");
+        filter = input[i].value.toUpperCase();
+        console.log('i ='+i);
+        table = document.getElementsByClassName("myTable");
+        tr = table[i].getElementsByTagName("tr");
         for (i = 0; i < tr.length; i++) {
             td = tr[i].getElementsByTagName("td")[0];
             if (td) {
@@ -299,6 +288,7 @@ while ($result3 = mysqli_fetch_array($query3)) {
             }
         }
     }
+
 </script>
 
 </html>
