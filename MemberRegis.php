@@ -2,7 +2,7 @@
     #include("admin/config/config.php");
     session_start();
     $errors = array();
-    $db = mysqli_connect("localhost","root","","Airline_test");
+    $db = mysqli_connect("localhost","root","","airline");
     if (mysqli_connect_errno()) {
         echo "Failed to connect to MYSQL: ".mysqli_connect_error();
     } 
@@ -29,19 +29,14 @@
     }
 
     if(count($errors)==0) {
-        #$pwd = md5($pwd);
-        if($sex == 'm') {
-            $prefix = "Mr.";
-        } else {
-            $prefix = "Mrs.";
-        }
-        $query = "INSERT INTO Member (Email,Password,Prefix,FirstName,LastName,DOB,Country,PhoneNumber,Passport,MilesPoint)
-        VALUES('$email',$pwd,'$prefix','$fname','$lname','$DOB','$country',$phone,'$passport',0)";
+        $query = "INSERT INTO Member (Email,Password,Sex,FirstName,LastName,DOB,Country,PhoneNumber,Passport,MilesPoint)
+        VALUES('$email',$pwd,'$sex','$fname','$lname','$DOB','$country',$phone,'$passport',0)";
         if (!mysqli_query($db,$query)) {
             die('Error: '.mysqli_error($db));
         } else{
             $_SESSION['Mname'] = $fname;
-            $_SESSION['success'] = "You are now loggin in";
+            $_SESSION['MEmail'] = $email;
+            #$_SESSION['success'] = "You are now loggin in";
             echo "success";
             #header('location: index.php');
         }
