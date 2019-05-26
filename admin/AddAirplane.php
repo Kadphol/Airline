@@ -44,14 +44,13 @@
             <h2>Seat</h2>
 
             <div id="dynamicInput[0]">
-                
                 Row <input type="text" name="Row[]">
                 to <input type="text" name="ToRow[]">
                 <select name="Class[]">
                     <option value="" Selected>--Selected Class--</option>
-                    <option value="FirsstClass[]">Firsst Class</option>
-                    <option value="Business[]">Business</option>
-                    <option value="Economy[]">Economy</option>
+                    <option value="First">First Class</option>
+                    <option value="Business">Business</option>
+                    <option value="Economy">Economy</option>
                 </select>
                 <input type="button" value="Add" onClick="Add();">
             </div>
@@ -69,7 +68,7 @@
         newdiv.id = dynamicInput[counter];
         newdiv.innerHTML = "Row " + "<input type='text' name='Row[]'>" +
             " to " + "<input type='text' name='ToRow[]'>" +
-            "<select name='Class[]'><option value='No[]' Selected>--Selected Class--</option><option value='FirsstClass[]'>Firsst Class</option><option value='Business[]'>Business</option><option value='Economy[]'>Economy</option></select>";
+            "<select name='Class[]'><option value='No[]' Selected>--Selected Class--</option><option value='First'>First Class</option><option value='Business'>Business</option><option value='Economy'>Economy</option></select>";
         document.getElementById('newElem').appendChild(newdiv);
         counter++;
     }
