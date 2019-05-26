@@ -1,6 +1,7 @@
 <?php
     #include("admin/config/config.php");
     $db = mysqli_connect("localhost","root","","airline");
+    session_start();
     if(isset($_SESSION['MEmail'])) {
         $email = $_SESSION['MEmail'];
         $query = "SELECT * FROM Member WHERE Email = '$email'";
@@ -37,11 +38,7 @@
         &emsp;Date of Birth<br>
         &emsp;<?echo $DOB;?><!--31/10/1999--><br><br>
         &emsp;Phone Number<br>
-<<<<<<< HEAD
-        &emsp;(+66)65445620<br><br>
-=======
         &emsp;<?echo $phone;?><!--(+66)65445620-->
->>>>>>> ad11531ce8a4b28dd940d4af4e0a632e51c3d9f0
     </p>
 </body>
 
