@@ -34,7 +34,7 @@
         if (!mysqli_query($db,$query)) {
             die('Error: '.mysqli_error($db));
         } else{
-            $_SESSION['Mname'] = $fname;
+            $_SESSION['MName'] = $fname;
             $_SESSION['MEmail'] = $email;
             #$_SESSION['success'] = "You are now loggin in";
             echo "success";
