@@ -103,7 +103,6 @@ while ($result3 = mysqli_fetch_array($query3)) {
 <body>
 
     <h1>Airport Information</h1>
-    <p>Edit</p>
     <hr>
     <h3>AirportID&emsp;&emsp;AirportName</h3>
     <p><?php echo $myAirportID ?>&emsp;&emsp;&emsp;&emsp;<?php echo $myAirportName ?></p>
@@ -113,9 +112,52 @@ while ($result3 = mysqli_fetch_array($query3)) {
     <p><?php echo $Tax ?> THB</p>
 
     <div class="tab">
+        <button class="tablinks" onclick="openCity(event, 'Route')">Route</button>
         <button class="tablinks" onclick="openCity(event, 'Flight')">Flight</button>
         <button class="tablinks" onclick="openCity(event, 'Airplane')">Airplane</button>
         <button class="tablinks" onclick="openCity(event, 'Staff')">Staff</button>
+    </div>
+
+    <div id="Route" class="tabcontent">
+        <p>RouteID
+            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for RouteID.." title="Type in a name" />
+            &emsp;&emsp;&emsp;&emsp;&emsp;
+            <input type="button" value="+Add Route" onclick="window.location.href = 'AddRoute.php'">
+        </p>
+        <table id="myTable">
+            <tr class="header">
+                <th>flight</th>
+                <th>Route</th>
+                <th>Day of Oparation</th>
+                <th>AirplanID</th>
+                <th>Active</th>
+                <th> </th>
+            </tr>
+            <tr>
+                <td>FD3306</td>
+                <td>DMK-CMK</td>
+                <td>Monday,Friday</td>
+                <td>HG-4483</td>
+                <td>A</td>
+                <td>Manage</td>
+            </tr>
+            <tr>
+                <td>FD2106</td>
+                <td>DMK-CMK</td>
+                <td>Monday,Friday</td>
+                <td>HG-4483</td>
+                <td>A</td>
+                <td>Manage</td>
+            </tr>
+            <tr>
+                <td>GG5506</td>
+                <td>DMK-CMK</td>
+                <td>Everyday</td>
+                <td>HG-4483</td>
+                <td>A</td>
+                <td>Manage</td>
+            </tr>
+        </table>
     </div>
 
     <div id="Flight" class="tabcontent">
