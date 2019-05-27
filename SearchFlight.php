@@ -180,10 +180,10 @@
                     $interval = date_diff($date1,$date2);
                     echo $interval->format('Duration %h:%i:%s Hours');
                     ?>
-                    <?php $linkAdress = "AddOn.php?FlightID=".$FlightID[$i];?>
+                    <?php $linkAddress = "AddOn.php?FlightID=".$FlightID[$i];?>
                     </div>
                     <div class="col-md-6">
-                        <button type ="button" class="btn btn-light btn-lg"> <?php echo "<a href='$linkAdress'><b>Select</b></a>" ?></button>
+                       <?php echo "<a href='$linkAddress' class='btn btn-primary'><b>Select</b></a>"?>
                     </div>
                 </div>
             </div>
