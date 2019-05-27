@@ -48,7 +48,6 @@
                 <?php
                 while($row= mysqli_fetch_array($query2)) {
                     echo "<tr>";
-                    echo "<td>".$No2."</td>";
                     echo "<td>".$row["Min"]."</td>";
                     echo "<td>".$row["Max"]."</td>";
                     echo "<td>".$row["Average"]."</td>";
