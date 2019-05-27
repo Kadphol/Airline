@@ -7,7 +7,6 @@
         }
     
     //error_reporting(~E_NOTICE);
-    $AirportID = mysqli_real_escape_string($db, $_POST["AirportID"]);
     $RegisDate = mysqli_real_escape_string($db, $_POST["RegisDate"]);
     $ModelNo = mysqli_real_escape_string($db, $_POST["ModelNo"]);
     $Payload = mysqli_real_escape_string($db, $_POST["Payload"]);
@@ -24,14 +23,13 @@
     // echo $Row[1];
     // echo $ClassName[1];
     
-    $sql1= "INSERT INTO airplane (AirportID,RegisterDate,Payload,Status,ModelNo)
-            VALUES('$AirportID','$RegisDate','$Payload','$Status','$ModelNo')";
+    $sql1= "INSERT INTO airplane (RegisterDate,Payload,Status,ModelNo)
+            VALUES('$RegisDate','$Payload','$Status','$ModelNo')";
     mysqli_query($db, $sql1);
     $query = mysqli_query($db, "SELECT MAX(AirplaneID) FROM airplane");
     while ($result = mysqli_fetch_array($query)) {
         $AirplaneID = $result['MAX(AirplaneID)'];
     }
-    //echo $AirplaneID;
     for($j=0;$j<sizeof($Row);$j++){
         $sql2= "INSERT INTO airplaneseat (Row,AirplaneID,ClassName)
                 VALUES('$Row[$j]','$AirplaneID','$ClassName[$j]')";

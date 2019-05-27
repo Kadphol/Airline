@@ -7,7 +7,6 @@ if (mysqli_connect_errno()) {
 $query = mysqli_query($db, "SELECT * FROM Airplane");
 while ($result = mysqli_fetch_array($query)) {
     $AirplaneID[] = $result['AirplaneID'];
-    $Airport[] = $result['AirportID'];
 }
 $query2 = mysqli_query($db, "SELECT * FROM route");
 while ($result2 = mysqli_fetch_array($query2)) {
@@ -46,18 +45,17 @@ while ($result2 = mysqli_fetch_array($query2)) {
                 <option value="" Selected>--AirplaneID--</option>
                 <?php
                 for ($i = 0; $i < sizeof($AirplaneID); $i++) { ?>
-                    <option> <?php echo $AirplaneID[$i]." - ".$Airport[$i] ?> </option>
+                    <option> <?php echo $AirplaneID[$i]?> </option>
                 <?php } ?>
             </select><br><br>
-            Gate <input type="text" name="Gate">
-        </p>
-        <p>
+            Gate <input type="text" name="Gate"><br><br>
             Status
             <select name="Status">
                 <option value="" Selected>--Status--</option>
                 <option value="n">Not Active</option>
                 <option value="a">Active</option>
-            </select>
+            </select><br><br>
+            Price <input type="text" name="Price">
         </p>
         <input type="submit" value="Add Flight">
     </form>
