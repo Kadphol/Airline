@@ -16,7 +16,8 @@
     $sql = "SELECT f.FlightID,f.DepartureDate,f.ArrivalDate,CONCAT(r.Origin,' ',a.AirportName) AS OriginAirport,f.Gate
              FROM Airport a JOIN Route r ON a.airportID = r.Origin
              JOIN Flight f ON r.RouteID = f.RouteID
-             WHERE CAST(f.DepartureDate AS DATE) = CURDATE()";
+             WHERE CAST(f.DepartureDate AS DATE) = CURDATE()
+             ORDER BY DepartureDate";
     $query = mysqli_query($db,$sql);
     while($row=mysqli_fetch_array($query)) {
         $FlightID[] = $row['FlightID'];
@@ -44,8 +45,8 @@
             <table>
                 <tr>
                     <td>FlightID</td>
-                    <td>Departure Date</td>
-                    <td>Arrival Date</td>
+                    <td>Departure time</td>
+                    <td>Arrival time</td>
                     <td>From</td>
                     <td>To</td>
                     <td>Gate</td>

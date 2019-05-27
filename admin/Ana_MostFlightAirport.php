@@ -8,11 +8,11 @@
             FROM Airport JOIN Route ON Airport.AirportID = Route.Origin 
             JOIN Flight ON Route.RouteID = Flight.RouteID
             GROUP BY Airport.AirportID
-            ORDER BY Arrival_Count DESC
+            ORDER BY Departure_Count DESC
             LIMIT 10";
     $Dquery = mysqli_query($db,$Dsql);
     $DCount = 1;
-    $Asql = "SELECT Airport.AirportID AS IATA,irport.AirportName AS AirportName,Airport.Address AS Country,COUNT(*) AS Arrival_Count
+    $Asql = "SELECT Airport.AirportID AS IATA,Airport.AirportName AS AirportName,Airport.Address AS Country,COUNT(*) AS Arrival_Count
             FROM Airport JOIN Route ON Airport.AirportID = Route.Destination
             JOIN Flight ON Route.RouteID = Flight.RouteID
             GROUP BY Airport.AirportID
@@ -33,7 +33,7 @@
                     <td>No.</td>
                     <td>IATA</td>
                     <td>Airport Name</td>
-                    <td>Country</td>
+                    <td>City</td>
                     <td>Departure Count</td>
                 </tr>
                 <?php
@@ -59,7 +59,7 @@
                     <td>No.</td>
                     <td>IATA</td>
                     <td>Airport Name</td>
-                    <td>Country</td>
+                    <td>City</td>
                     <td>Arrival Count</td>
                 </tr>
                 <?php
