@@ -22,16 +22,16 @@
 <!--LOGIN PHP-->
 <?php
     session_start();
-    #include("config/config.php");
+    $connection = mysqli_connect("localhost", "root", "", "airline");
+    if (mysqli_connect_errno()) {
+        echo "Failed to connect to MySQL: " . mysqli_connect_error();
+    }
 
     if(isset($_POST['login'])) {
-        $connection = mysqli_connect("localhost", "root", "", "airline");
-
         $email = $connection->real_escape_string($_POST['email']);
         $password = $connection->real_escape_string($_POST['password']);
         
         $data = $connection->query("SELECT email FROM member WHERE email='$email' AND password='$password'");
-        #$query = $connection->query("SELECT * FROM Flight WHERE email='$email' AND password='$password'");
 
         if($data -> num_rows > 0){
             $_SESSION['loggedIN'] = '1';
@@ -42,6 +42,48 @@
             exit('please check your input');
         }
     }
+
+    #FROM INDEX PHP
+    $DepartureAirport = $_POST['DepartureAirport'];
+    $ArrivalAirport = $_POST['ArrivalAirport'];
+    $DepartureDate = $_POST['DepartureDate'];
+    $ReturnDate = $_POST['ReturnDate'];
+    $NumberOfPassenger = $_POST['NumberPassenger'];
+    $Class = $_POST['Class'];
+
+    #CONVERT TO DAYWEEK
+    $unixTimestamp = strtotime($DepartureDate);
+    $dayOfWeek = date("l", $unixTimestamp);
+    $DepartureDate = date("d M y", $unixTimestamp);
+
+    #QUERY DEPARTURE AIRPORTID
+    $dAirportquery = mysqli_query($connection, "SELECT AirportID FROM Airport WHERE AirportName = '$DepartureAirport'");
+    while ($result1 = mysqli_fetch_array($dAirportquery)) {
+        $dAirportID = $result1['AirportID'];
+    }
+
+    #QUERY ARRIVAL AIRPORTID
+    $aAirportquery = mysqli_query($connection, "SELECT * FROM Airport WHERE AirportName = '$ArrivalAirport'");
+    while ($result2 = mysqli_fetch_array($aAirportquery)) {
+        $aAirportID = $result2['AirportID'];
+    }
+
+    #QUERY FLIGHT
+    $query = mysqli_query($connection,"SELECT * FROM Flight WHERE RouteID IN 
+                                      (SELECT RouteID FROM Route WHERE Origin = '$dAirportID' AND Destination = '$aAirportID')");
+    while ($result = mysqli_fetch_array($query)) {
+        $FlightID[] = $result['FlightID'];
+        $FlightDepartureDate[] = $result['DepartureDate'];
+        $FlightArrivalDate[] = $result['ArrivalDate'];
+    }
+
+      #BOOKING SESSION
+      $_SESSION['dAirportID'] = $dAirportID;
+      $_SESSION['aAirportID'] = $aAirportID;
+      $_SESSION['DepartureDate'] = $DepartureDate;
+      $_SESSION['ReturnDate'] = $ReturnDate;
+      $_SESSION['NumberOfPassenger'] = $NumberOfPassenger;
+      $_SESSION['Class'] = $Class;
 ?>
 
 <html>
@@ -114,40 +156,61 @@
         <?php }
         ?>
 
+        <?php
+        if ($result==0)
+        {?>
+           
          <!--SEARCH FLIGHT-->
          <div class="container col-md-8 justify-content-left" style="margin-top:15%;">
-            <h3><b>Departure </b></h3>
-            <p>Friday 22 Febuary 2019 <br>
-             Start at 99,999 Baht</p>
+            <h3><b>Departure <?php echo $DepartureAirport?> to <?php echo $ArrivalAirport ?></b></h3>
+            <p><?php echo $dayOfWeek?> <?php echo $DepartureDate ?> <br></p>
          </div>
 
+        <?php
+            for ($i = 0 ; $i < sizeof($FlightID); $i++) { ?>
         <div class="card-container col-md-8 mt-3">
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-6">
-                    10.55 ------- 13.30 <br>
-                    2hrs. 35min.
+                    <?php echo "Flight"."  ".$FlightID[$i] ?><br>
+                    <b><?php echo $FlightDepartureDate[$i] ?></b> ———— <b><?php echo $FlightArrivalDate[$i] ?></b> <br>
+                    <?php 
+                    $date1 = new DateTime($FlightArrivalDate[$i]);
+                    $date2 = new DateTime($FlightDepartureDate[$i]);
+                    $interval = date_diff($date1,$date2);
+                    echo $interval->format('Duration %h:%i:%s Hours');
+                    ?>
+                    <?php $linkAdress = "AddOn.php?FlightID=".$FlightID[$i];?>
                     </div>
                     <div class="col-md-6">
-                        <button type="button" class="btn-info align-bottom btn-lg  mr-1">Select</button>
+                        <button type ="button" class="btn btn-light btn-lg"> <?php echo "<a href='$linkAdress'><b>Select</b></a>" ?></button>
                     </div>
                 </div>
             </div>
+        </div>
+        <?php } ?>
+
+        <?php
+        }  
+        else
+        {
+        ?>
+        
+         <div class="card-container col-md-8 mt-3" style="top:50%"> 
+            <div class="card-body">
+            <div class="row">
+                    <div class="col-md-6">
+                <h1>No Flight</h1>
+                </div>
+        </div>
+        </div>
         </div>
 
-        <div class="card-container col-md-8 mt-2">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-6">
-                    10.55 ------- 13.30 <br>
-                    2hrs. 35min.
-                    </div>
-                    <div class="col-md-6">
-                        <button type="button" class="btn-info align-bottom btn-lg  mr-1">Select</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+        <?php } ?>
+
+        
+
     </body>
 </html>
 
