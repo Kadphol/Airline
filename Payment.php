@@ -19,6 +19,44 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
+<!--LOGIN PHP-->
+<?php
+session_start();
+$connection = mysqli_connect("localhost", "root", "", "airline");
+if (mysqli_connect_errno()) {
+    echo "Failed to connect to MySQL: " . mysqli_connect_error();
+}
+
+if (isset($_POST['login'])) {
+    $email = $connection->real_escape_string($_POST['email']);
+    $password = $connection->real_escape_string($_POST['password']);
+
+    $data = $connection->query("SELECT email FROM member WHERE email='$email' AND password='$password'");
+    #$query = $connection->query("SELECT * FROM Flight WHERE email='$email' AND password='$password'");
+
+    if ($data->num_rows > 0) {
+        $_SESSION['loggedIN'] = '1';
+        $_SESSION['email'] = $email;
+        exit('login success...');
+    } else {
+        exit('please check your input');
+    }
+}
+
+$FlightID =  $_SESSION['FlightID'];
+$AddOnName = $_SESSION['AddOnName'];
+
+#BOOKING GET SESSION
+$dAirportID = $_SESSION['dAirportID'];
+$aAirtportID = $_SESSION['aAirportID'];
+$DepartureDate = $_SESSION['DepartureDate'];
+$ReturnDate = $_SESSION['ReturnDate'];
+$NumberOfPassenger = $_SESSION['NumberOfPassenger'];
+$Class = $_SESSION['Class'];
+
+#SEAT SESSION
+$SplitSeat = $_SESSION['SplitSeat']
+?>
 
 <html>
     <head>
