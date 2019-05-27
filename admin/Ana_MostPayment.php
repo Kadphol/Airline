@@ -8,7 +8,7 @@
             FROM PaymentMethod p JOIN Billing b ON p.CardNo = b.CardNo
             WHERE b.PayDate BETWEEN '2019-01-01' AND '2019-12-31'
             GROUP BY p.CardType
-            ORDER BY Count";
+            ORDER BY Count DESC";
     $query = mysqli_query($db,$sql);
 ?>
 <!DOCTYPE html>
