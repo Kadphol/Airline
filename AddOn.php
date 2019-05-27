@@ -58,13 +58,13 @@
           $Class = $_SESSION['Class'];
 
           #QUERY ADDON
-          $query = mysqli_query($connection,"SELECT * FROM AddOn WHERE AddOnClass = '$Class'");
+          $query = mysqli_query($connection,"SELECT * FROM AddOn WHERE ClassName = '$Class'");
           while ($result = mysqli_fetch_array($query)) {
           $AddOnID[] = $result['AddOnID'];
-          $AddOnClass[] = $result['AddOnClass'];
-          $AddOnType[] = $result['AddOnType'];
+          $AddOnName[] = $result['AddOnName'];
+          $ClassName[] = $result['ClassName'];
           $AddOnPrice[] = $result['AddOnPrice'];
-          $AddOnDescription[] = $result['AddOnDescription'];
+          $Description[] = $result['Description'];
           }
 
 
@@ -151,13 +151,13 @@
               <table>
                 <tr>
                 <?php
-                  for ($i = 0 ; $i < sizeof($AddOnClass); $i++) { ?>
+                  for ($i = 0 ; $i < sizeof($ClassName); $i++) { ?>
                   <td style="padding-right:15px;">
                   <div class="card" style="max-width: 18rem;">
-                  <div class="card-header bg-dark text-white text-center"><?php echo $AddOnClass[$i]."  ".$AddOnType[$i] ?></div>
+                  <div class="card-header bg-dark text-white text-center"><?php echo $AddOnName[$i] ?></div>
                     <div class="card-body bg-light">
                       <?php 
-                        $SplitDescription = explode(',',$AddOnDescription[$i]);
+                        $SplitDescription = explode(',',$Description[$i]);
                        
                         echo $SplitDescription[0].'<br>'.'<br>'.
                              $SplitDescription[1].'<br>'.'<br>'.
@@ -165,7 +165,7 @@
                              $SplitDescription[3].'</br>'.'<br>';
                       ?>
 
-                <?php $linkAddress = "SelectSeat.php?AddOnType=".$AddOnType[$i];?>
+                <?php $linkAddress = "SelectSeat.php?AddOnName=".$AddOnName[$i];?>
                 <?php echo "<a href='$linkAddress' class='btn btn-primary'><b>Select</b></a>"?>
 
                     </div>

@@ -212,7 +212,7 @@
                                         <label>Class</label>
                                         <select name="Class" class="form-control">
                                             <option value="" Selected>--Selected Class--</option>
-                                                  <option value="FirstClass" >First Class</option>
+                                                  <option value="First" >First Class</option>
                                             <option value="Business">Business</option>
                                             <option value="Economy">Economy</option>
                                         </select>
@@ -255,4 +255,8 @@
                 }
             )
         });
+<<<<<<< HEAD
+=======
+  
+>>>>>>> 135f521f05c0b65f391904b74a5b03d91a48be31
 </script>

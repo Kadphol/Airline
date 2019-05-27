@@ -46,10 +46,10 @@ if (isset($_POST['login'])) {
         exit('please check your input');
     }
 }
-$_SESSION['AddOnType'] = $_GET['AddOnType'];
+$_SESSION['AddOnName'] = $_GET['AddOnName'];
 
 $FlightID =  $_SESSION['FlightID'];
-$AddOnType = $_SESSION['AddOnType'];
+$AddOnName = $_SESSION['AddOnName'];
 
 #BOOKING GET SESSION
 $dAirportID = $_SESSION['dAirportID'];
@@ -305,7 +305,7 @@ $Class = $_SESSION['Class'];
         var economyEnd = 8;
 
 
-        if (selectedClass == 'FirstClass') { //firstclass
+        if (selectedClass == 'First') { //firstclass
             for ($z = businessInitial; $z <= businessEnd; $z++) {
                 $i = '0' + $z;
                 sc.get([$i + '_A', $i + '_B', $i + '_C', $i + '_D', $i + '_E', $i + '_F', $i + '_G']).status('unavailable');

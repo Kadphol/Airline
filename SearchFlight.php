@@ -157,8 +157,9 @@
         ?>
 
         <?php
-        if ($result==0)
+        if (sizeof($FlightID)>0)
         {?>
+           
            
          <!--SEARCH FLIGHT-->
          <div class="container col-md-8 justify-content-left" style="margin-top:15%;">
