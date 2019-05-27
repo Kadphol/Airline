@@ -131,22 +131,25 @@ $_SESSION['SplitSeat'] = $SplitSeat;
         <div class="card-container col-md-8 mt-4">
             <div class="card-body">
                 <h1><b>Passenger Detail</b></h1>
-                <form action="payment.php" method="POST">
+                <form action="PassengerDetail_php.php" method="POST">
                     <p>Adult <?php echo $i ?></p>
                     <hr>
                     <div class="form-inline">
-                        <input type="text" class="form-control col-md-5" name="FirstName" placeholder="First Name">
-                        <input type="text" class="form-control col-md-5" name="LastName" placeholder="Last Name"><br><br>
+                        <input type="text" class="form-control col-md-5" name="FirstName[]" placeholder="First Name">
+                        <input type="text" class="form-control col-md-5" name="LastName[]" placeholder="Last Name"><br><br>
                     </div>
 
                     <p class="top-form">Date of Birth</p>
                     <div class="form-inline">
-                        <input type="Date" class="form-control col-md-5" name="DOB">
+                        <input type="Date" class="form-control col-md-5" name="DOB[]">
 
                         <div class="col-md-6">
                             <div class="form-inline">
-                                <label class="check-space"><input type="radio" class="form-check-input" name="sex" value="m" checked>Male </label>
-                                <label class="check-space"><input type="radio" class="form-check-input" name="sex" value="f">Female</label>
+                                <select name="sex[]" class="form-control">
+                                    <option value="" Selected>-- Selected Sex --</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
                             </div>
                         </div>
                     </div>
