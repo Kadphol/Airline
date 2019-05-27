@@ -13,38 +13,46 @@ while ($result = mysqli_fetch_array($query)) {
 }
 // Route
 $query1 = mysqli_query($db, "SELECT * FROM route WHERE Origin LIKE '$myAirportID' OR Destination LIKE '$myAirportID'");
-while ($result1 = mysqli_fetch_array($query1)) {
-    $RouteID[] = $result1['RouteID'];
-    $Origin[] = $result1['Origin'];
-    $Destination[] = $result1['Destination'];
-    $Miles[] = $result1['Miles'];
+if($query1) {
+    while ($result1 = mysqli_fetch_array($query1)) {
+        $RouteID[] = $result1['RouteID'];
+        $Origin[] = $result1['Origin'];
+        $Destination[] = $result1['Destination'];
+        $Miles[] = $result1['Miles'];
+    }
 }
 //Flight
 $query2 = mysqli_query($db, "SELECT * FROM Flight f JOIN Route r ON f.RouteID=r.RouteID
                             WHERE Origin LIKE '$myAirportID' OR Destination LIKE '$myAirportID'");
-while ($result2 = mysqli_fetch_array($query2)) {
-    $FlightID[] = $result2['FlightID'];
-    $OriginFlight[] = $result2['Origin'];
-    $DestinationFlight[] = $result2['Destination'];
-    $FAirplaneID[] = $result2['AirplaneID'];
-    $StatusFlight[] = $result2['Status'];
+if($query2) {
+    while ($result2 = mysqli_fetch_array($query2)) {
+        $FlightID[] = $result2['FlightID'];
+        $OriginFlight[] = $result2['Origin'];
+        $DestinationFlight[] = $result2['Destination'];
+        $FAirplaneID[] = $result2['AirplaneID'];
+        $StatusFlight[] = $result2['Status'];
+    }
 }
 //Staff
 $query3 = mysqli_query($db, "SELECT * FROM staff WHERE AirportID LIKE '$myAirportID'");
-while ($result3 = mysqli_fetch_array($query3)) {
-    $StaffID[] = $result3['StaffID'];
-    $AirportID[] = $result3['AirportID'];
-    $FirstName[] = $result3['FirstName'];
-    $LastName[] = $result3['LastName'];
-    $Position[] = $result3['Position'];
+if($query3) {
+    while ($result3 = mysqli_fetch_array($query3)) {
+        $StaffID[] = $result3['StaffID'];
+        $AirportID[] = $result3['AirportID'];
+        $FirstName[] = $result3['FirstName'];
+        $LastName[] = $result3['LastName'];
+        $Position[] = $result3['Position'];
+    }
 }
 //Airplane
 $query4 = mysqli_query($db, "SELECT * FROM airplane WHERE AirportID LIKE '$myAirportID'");
-while ($result4 = mysqli_fetch_array($query4)) {
-    $AirplaneID[] = $result4['AirplaneID'];
-    $RegisterDate[] = $result4['RegisterDate'];
-    $ModelNo[] = $result4['ModelNo'];
-    $StatusAirplane[] = $result4['Status'];
+if($query4) {
+    while ($result4 = mysqli_fetch_array($query4)) {
+        $AirplaneID[] = $result4['AirplaneID'];
+        $RegisterDate[] = $result4['RegisterDate'];
+        $ModelNo[] = $result4['ModelNo'];
+        $StatusAirplane[] = $result4['Status'];
+    }
 }
 ?>
 <html>
