@@ -139,6 +139,7 @@ error_reporting(0);
 <body>
 
     <h1>Airport Information</h1>
+    <input type="button" value="<Back" onclick="window.location.href = 'WelcomeStaff.php'">
     <hr>
     <h3>AirportID&emsp;&emsp;AirportName</h3>
     <p><?php echo $myAirportID ?>&emsp;&emsp;&emsp;&emsp;<?php echo $myAirportName ?></p>
