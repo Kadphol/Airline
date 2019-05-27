@@ -58,5 +58,6 @@
         &emsp;Position<br>
         &emsp;<?php echo $Position?>
         </p>
+        <input type="button" value="Back" onclick="window.location.href = 'WelcomeStaff.php'">
     </body>
 </html>
