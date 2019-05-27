@@ -4,10 +4,6 @@
     if (mysqli_connect_errno()) {
         echo "Failed to connect to MySQL: " . mysqli_connect_error();
     }
-    $query = mysqli_query($db, "SELECT * FROM airport");
-    while ($result = mysqli_fetch_array($query)) {
-        $airport[] = $result['AirportID'];
-    }
 ?>
 
 <html>
@@ -20,15 +16,6 @@
         <div id='newElem'>
             <h1>Add Airplane</h1>
             <p>
-                AirportID
-                <!-- query AirportID -->
-                <select name="AirportID">
-                    <option value="" Selected>--AirportID--</option>
-                    <?php
-                    for ($i = 0; $i < sizeof($airport); $i++) { ?>
-                        <option> <?php echo $airport[$i] ?> </option>
-                    <?php } ?>
-                </select><br><br>
                 <!-- AirplaneID <input type="text" name="AirplaneID"> Auto Increment -->
                 Register Date <input type="date" name="RegisDate"><br><br>
                 Model No. <input type="text" name="ModelNo">

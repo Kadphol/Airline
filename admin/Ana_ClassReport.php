@@ -5,8 +5,8 @@
         echo "Failed to connect to MYSQL: ".mysqli_connect_error();
     }
     $sql = "SELECT Class.ClassName,COUNT(*) AS Count
-            FROM Class JOIN AirplaneSeat ON Class.ClassName = AirplaneSeat.ClassName
-            JOIN Booking ON AirplaneSeat.SeatID = Booking.SeatID
+            FROM Class JOIN AddOn ON Class.ClassName = AddOn.ClassName
+            JOIN Booking ON AddOn.AddOnID = Booking.AddOnID
             GROUP BY Class.ClassName";
     $query = mysqli_query($db,$sql);
 ?>

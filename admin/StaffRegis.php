@@ -34,12 +34,7 @@
         <input type="radio" name="sex" value="f">Female<br><br>
         <p>Dath of Birth :</p>
         <input type="Date" name="DOB" value="DOB"><br><br>
-        <select name="Country">
-            <option value="" Selected>--Country--</option>
-            <option value="+66">+66</option>
-            <option value="+81">+81</option>
-            <option value="+48">+48</option>
-        </select>
+        <input type="text" name="Country" placeholder="+66"><br><br>
         <input type="tel" name="PhoneNumber" placeholder="Phone Number"><br><br>
         <input type="text" name="Address" placeholder="Address"> <br><br>
         <input type="text" name="Position" placeholder="Position"> <br><br>
