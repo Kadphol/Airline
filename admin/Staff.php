@@ -38,16 +38,16 @@
             <button type="submit" name="Delete" value="1">Delete</button>
         </form>
         <p>
-            Email <?php echo $Email?><br>
-            Name<?php echo $FirstName." ".$LastName?><br>
-            Sex<?php if($Sex=='m'){echo "Male";}
+            Email:&emsp;<?php echo $Email?><br>
+            Name:&emsp;<?php echo $FirstName." ".$LastName?><br>
+            Sex:&emsp;<?php if($Sex=='m'){echo "Male";}
                         else{echo "Female";} ?><br>
-            Passport No. <?php echo $Passport?><br>
-            Date of Birth <?php echo $DOB?><br>
-            Phone Number <?php echo "(".$Country.")".$PhoneNumber?><br>
-            Address <?php echo $Address?><br>
-            AirportID<?php echo $AirportID?><br>
-            Position<?php echo $Position?>
+            Passport No.:&emsp;<?php echo $Passport?><br>
+            Date of Birth:&emsp;<?php echo $DOB?><br>
+            Phone Number:&emsp;<?php echo "(".$Country.")".$PhoneNumber?><br>
+            Address:&emsp;<?php echo $Address?><br>
+            AirportID:&emsp;<?php echo $AirportID?><br>
+            Position:&emsp;<?php echo $Position?>
         </p>
     </body>
 </html>
