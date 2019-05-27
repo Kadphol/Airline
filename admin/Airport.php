@@ -62,7 +62,7 @@
                     </div>
                 </div>
 
-                <table  class="table">
+                <table  class="table" id="myTable">
                     <tr>
                         <th>AirportID</th>
                         <th>Airport Name</th>

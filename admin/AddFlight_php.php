@@ -12,19 +12,11 @@
     $Arrival = mysqli_real_escape_string($db, $_POST["Arrival"]);
     $AirplaneID = mysqli_real_escape_string($db, $_POST["AirplaneID"]);
     $Gate = mysqli_real_escape_string($db, $_POST["Gate"]);
-    $Start = mysqli_real_escape_string($db, $_POST["Start"]);
-    $End = mysqli_real_escape_string($db, $_POST["End"]);
     $Status = mysqli_real_escape_string($db, $_POST["Status"]);
-    $Temp = $_POST["DOO"];
-    $Temp2 = '';
-    for($i=0;$i<sizeof($Temp);$i++){
-        $Temp2 = $Temp2.$Temp[$i].",";
-       
-    }
-    $DOO  = substr($Temp2, 0, -1);
+
     
-    $sql= "INSERT INTO flight (RouteID,DepartureTime,ArrivalTime,AirplaneID,Gate,StartOparation,EndOparation,Status,DOO)
-    VALUES('$RouteID','$Departure','$Arrival','$AirplaneID','$Gate','$Start','$End','$Status','$DOO')";
+    $sql= "INSERT INTO flight (RouteID,DepartureTime,ArrivalTime,AirplaneID,Gate,Status)
+    VALUES('$RouteID','$Departure','$Arrival','$AirplaneID','$Gate','$Status')";
 
     if (!mysqli_query($db,$sql)) {
         die('Error: ' . mysqli_error($db));

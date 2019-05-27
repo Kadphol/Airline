@@ -51,20 +51,7 @@ while ($result2 = mysqli_fetch_array($query2)) {
             </select><br><br>
             Gate <input type="text" name="Gate">
         </p>
-        <hr>
-        <h2>Day of Oparation</h2>
         <p>
-            StartOparation <input type="date" name="Start">
-            EndOparation <input type="date" name="End"><br><br>
-            Day of Oparation:
-            <input type="checkbox" name="DOO[]" value="Everyday">Everyday
-            <input type="checkbox" name="DOO[]" value="Monday">Monday
-            <input type="checkbox" name="DOO[]" value="Tuesday">Tuesday
-            <input type="checkbox" name="DOO[]" value="Wednesday">Wednesday
-            <input type="checkbox" name="DOO[]" value="Thursday">Thursday
-            <input type="checkbox" name="DOO[]" value="Friday">Friday
-            <input type="checkbox" name="DOO[]" value="Saturday">Saturday
-            <input type="checkbox" name="DOO[]" value="Sunday">Sunday<br><br>
             Status
             <select name="Status">
                 <option value="" Selected>--Status--</option>

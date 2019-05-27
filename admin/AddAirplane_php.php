@@ -19,9 +19,9 @@
     // echo $ToRow[0];
 
     for($i=0;$i<sizeof($Row);$i++){
-        $SeatID[$i] = $Row[$i]."-".$ToRow[$i];
+        $Row[$i] = $Row[$i]."-".$ToRow[$i];
     }
-    // echo $SeatID[1];
+    // echo $Row[1];
     // echo $ClassName[1];
     
     $sql1= "INSERT INTO airplane (AirportID,RegisterDate,Payload,Status,ModelNo)
@@ -32,9 +32,9 @@
         $AirplaneID = $result['MAX(AirplaneID)'];
     }
     //echo $AirplaneID;
-    for($j=0;$j<sizeof($SeatID);$j++){
-        $sql2= "INSERT INTO airplaneseat (SeatID,AirplaneID,ClassName)
-                VALUES('$SeatID[$j]','$AirplaneID','$ClassName[$j]')";
+    for($j=0;$j<sizeof($Row);$j++){
+        $sql2= "INSERT INTO airplaneseat (Row,AirplaneID,ClassName)
+                VALUES('$Row[$j]','$AirplaneID','$ClassName[$j]')";
         if (!mysqli_query($db,$sql2)) {
             die('Error: ' . mysqli_error($db));
         }
