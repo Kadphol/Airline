@@ -25,9 +25,9 @@
         <h1>RouteID : <?php echo $RouteID?></h1>
         <hr>
         <p>
-            Origin <?php echo $Origin?><br>
-            Destination <?php echo $Destination?><br>
-            Miles <?php echo $Miles?><br>
+            Origin: <?php echo $Origin?><br>
+            Destination: <?php echo $Destination?><br>
+            Miles: <?php echo $Miles?><br>
         </p>
     </body>
     <hr>
