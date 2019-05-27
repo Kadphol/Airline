@@ -45,7 +45,7 @@ if($query3) {
     }
 }
 //Airplane
-$query4 = mysqli_query($db, "SELECT * FROM airplane WHERE AirportID LIKE '$myAirportID'");
+$query4 = mysqli_query($db, "SELECT * FROM airplane");
 if($query4) {
     while ($result4 = mysqli_fetch_array($query4)) {
         $AirplaneID[] = $result4['AirplaneID'];
@@ -54,6 +54,7 @@ if($query4) {
         $StatusAirplane[] = $result4['Status'];
     }
 }
+error_reporting(0);
 ?>
 <html>
 
@@ -165,15 +166,15 @@ if($query4) {
                 <th>Origin</th>
                 <th>Destination</th>
                 <th>Miles</th>
-                <!-- <th> </th> -->
+                <th> </th>
             </tr>
             <?php for ($i = 0; $i < sizeof($RouteID); $i++) { ?>
                 <tr>
                     <td><?php echo $RouteID[$i] ?></td>
                     <td><?php echo $Origin[$i] ?></td>
                     <td><?php echo $Destination[$i] ?></td>
-                    <td><?php echo $Miles[$i] ?></td>
-                    <!-- <td>Manage</td> -->
+                    <td><?php echo $Miles[$i]; $linkAdress1 = "Route.php?RouteID=".$RouteID[$i]; ?></td>
+                    <td><?php echo "<a href='$linkAdress1'>Manage</a></td>"?></td>
                 </tr>
             <?php } ?>
  
@@ -192,7 +193,7 @@ if($query4) {
                 <th>Route</th>
                 <th>AirplaneID</th>
                 <th>Status</th>
-                <!-- <th> </th> -->
+                <th> </th>
             </tr>
             <?php for ($i = 0; $i < sizeof($FlightID); $i++) { ?>
                 <tr>
@@ -200,8 +201,8 @@ if($query4) {
                     <td><?php echo $OriginFlight[$i]." - ".$DestinationFlight[$i] ?></td>
                     <td><?php echo $FAirplaneID[$i] ?></td>
                     <td><?php if($StatusFlight[$i]=='n'){echo "Not Active";}
-                                else{echo "Active";} ?></td>
-                    <!-- <td>Manage</td> -->
+                                else{echo "Active";} $linkAdress2 = "Flight.php?FlightID=".$FlightID[$i];?></td>
+                    <td><?php echo "<a href='$linkAdress2'>Manage</a></td>"?></td>
                 </tr>
             <?php } ?>
         </table>
@@ -253,7 +254,8 @@ if($query4) {
                     <td><?php echo $StaffID[$i] ?></td>
                     <td><?php echo $AirportID[$i] ?></td>
                     <td><?php echo $FirstName[$i] . " " . $LastName[$i] ?></td>
-                    <td><?php echo $Position[$i] ?></td>
+                    <td><?php echo $Position[$i]; $linkAdress3 = "Staff.php?StaffID=".$StaffID[$i];?></td>
+                    <td><?php echo "<a href='$linkAdress3'>Manage</a></td>"?></td>
                 </tr>
             <?php } ?>
         </table>
