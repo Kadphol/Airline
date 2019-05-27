@@ -23,15 +23,17 @@
 <?php
     session_start();
     #include("config/config.php");
+    $connection = mysqli_connect("localhost", "root", "", "airline");
+    if (mysqli_connect_errno()) {
+        echo "Failed to connect to MySQL: " . mysqli_connect_error();
+    }
 
     if(isset($_POST['login'])) {
-        $connection = mysqli_connect("localhost", "root", "", "airline");
-
         $email = $connection->real_escape_string($_POST['email']);
         $password = $connection->real_escape_string($_POST['password']);
         
         $data = $connection->query("SELECT email FROM member WHERE email='$email' AND password='$password'");
-
+   
         if($data -> num_rows > 0){
             $_SESSION['loggedIN'] = '1';
             $_SESSION['email'] = $email;
@@ -41,9 +43,20 @@
             exit('please check your input');
         }
     }
+
+    $query = mysqli_query($connection,"SELECT * FROM Airport");
+
+    while ($result = mysqli_fetch_array($query)) {
+        $AirportName[] = $result['AirportName'];
+    }
 ?>
 
 <html>
+<head>
+        <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <meta charset="utf-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
 
     <body style="bottom: 0%">
         <!--NAVBAR-->
@@ -64,7 +77,6 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto nav-flex-icons">
-                    <?php echo $firstname?>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
@@ -145,22 +157,33 @@
 
         
         <!--BODY-->
+        <form action="SearchFlight.php" method="post">
             <div class="card-container col-md-8">
                 <div class="card-body">
                     <h2 class="d-flex justify-content-center"><b>Search Flight</b></h2>
                     <hr>
-                    <div class="form-row">
+                    <div class="form-row my-0">
                         <div class="col-md-6">
                                 <div class="row">
                                     <div class="form-group col-md-6 pl-1 pr-2">
                                         <label>Departure Airport</label>
-                                        <input type="text" name="Departure" class="form-control" id="departure_airport" placeholder="Departure Airport">
-                                        <ul id="DsearchResult"></ul>
+                                        <select name="DepartureAirport" class="form-control">
+                                            <option value="" Selected>Departure Airport</option></option>
+                                            <?php
+                                            for ($i = 0; $i < sizeof($AirportName); $i++) { ?>
+                                                <option> <?php echo $AirportName[$i] ?> </option>
+                                            <?php } ?>
+                                        </select><br><br>
                                     </div>
                                     <div class="form-group col-md-6 pl-1">
                                         <label>Arrival Airport</label>
-                                        <input type="text" name="Arrival" class="form-control" id="arrival_airport" placeholder="Arrival Airport">
-                                        <ul id="AsearchResult"></ul>
+                                        <select name="ArrivalAirport" class="form-control">
+                                            <option value="" Selected>Arrival Airport</option></option>
+                                            <?php
+                                            for ($i = 0; $i < sizeof($AirportName); $i++) { ?>
+                                                <option> <?php echo $AirportName[$i] ?> </option>
+                                            <?php } ?>
+                                        </select><br><br>
                                     </div>
                                 </div>
                         </div>
@@ -177,17 +200,12 @@
                                 </div>
                         </div>
                     </div>
-                    <div class="form-row">
+                    <div class="form-row my-0">
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="form-group col-md-6 mx-0 pl-0 pr-2">
-                                    <label>Passenger</label>
-                                    <select name="Passenger" class="form-control">
-                                        <option value="" Selected>--Selected Type--</option>
-                                        <option value="Adult">Adult</option>
-                                        <option value="Child">Child</option>I
-                                        <option value="Infant">Infant</option> 
-                                    </select>
+                                    <label>Number of Passenger</label>
+                                    <input type="text" name="numberpassenger" class="form-control">
                                     </div>
                                     <div class="form-group col-md-6 pl-2">
                                         <label>Class</label>
@@ -206,32 +224,11 @@
                     </div>
                 </div>
             </div>
+        </form>
     </body>
 </html>
 
 <script>
-    $(document).ready(function(){
-        $("#departure_airport").keyup(function() {
-            var search = $(this).val();
-            if(search != "") {
-                $.ajax({
-                    url: 'search.php',
-                    type: 'post',
-                    data: {search:search},
-                    dataType: 'json',
-                    success: function(response) {
-                        var len = response.length;
-                        $("#DsearchResult").empty();
-                        for( var i = 0; i<len ; i++) {
-                            var id = response[i]['id'];
-                            var airport = response[i]['value'];
-                            $("#DsearchResult").append("<li value='"+id+"'>"+airport+"</li>");
-                        }
-                    }
-                });
-            }
-        });
-
         $('#login').on('click',function(){
             var email = $('#email').val();
             var password = $('#password').val();
