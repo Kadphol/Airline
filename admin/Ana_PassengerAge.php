@@ -17,7 +17,7 @@
                 WHEN age > 90 AND age <= 100 THEN '91 - 100'
                 ELSE '>100' END AS age,
             COUNT(*) AS Amount
-            FROM (SELECT FLOOR(DATEDIFF(DOB,CURDATE())/365) as age FROM Passenger) p
+            FROM (SELECT FLOOR(DATEDIFF(CURDATE(),DOB)/365) as age FROM Passenger) p
             GROUP BY CASE WHEN age > 0 AND age <= 10 THEN '0 - 10'
             WHEN age > 10 AND age <= 20 THEN '11 - 20'
                 WHEN age > 20 AND age <= 30 THEN '21 - 30'
@@ -30,6 +30,9 @@
                 WHEN age > 90 AND age <= 100 THEN '91 - 100'
                 ELSE '>100'END";
     $query = mysqli_query($db,$sql);
+    $sql2 = "SELECT MIN(age) AS Min,MAX(age) AS Max,AVG(age) AS Average
+            FROM (SELECT FLOOR(DATEDIFF(CURDATE(),DOB)/365) as age FROM Passenger) p";
+    $query2 = mysqli_query($db,$sql2);
 ?>
 <!DOCTYPE html>
     <head>
@@ -40,14 +43,30 @@
             <h1><b>Age of Passenger</b></h1>
             <table>
                 <tr>
+                    <td>Min</td>
+                    <td>Max</td>
+                    <td>Average</td>
+                </tr>
+                <?php
+                while($row1= mysqli_fetch_array($query2)) {
+                    echo "<tr>";
+                    echo "<td>".$row1["Min"]."</td>";
+                    echo "<td>".$row1["Max"]."</td>";
+                    echo "<td>".$row1["Average"]."</td>";
+                    echo "</tr>";
+                }
+                ?>
+            </table>
+            <table>
+                <tr>
                     <td>Age</td>
                     <td>Amount</td>
                 </tr>
                 <?php
-                while($row= mysqli_fetch_array($query)) {
+                while($row2= mysqli_fetch_array($query)) {
                     echo "<tr>";
-                    echo "<td>".$row["age"]."</td>";
-                    echo "<td>".$row["Amount"]."</td>";
+                    echo "<td>".$row2["age"]."</td>";
+                    echo "<td>".$row2["Amount"]."</td>";
                     echo "</tr>";
                 }
                 ?>
