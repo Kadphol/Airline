@@ -1,19 +1,64 @@
+<?php
+    #include("config/config.php");
+    $db = mysqli_connect("localhost", "root", "", "airline");
+    if (mysqli_connect_errno()) {
+        echo "Failed to connect to MySQL: " . mysqli_connect_error();
+    }
+    $query = mysqli_query($db, "SELECT * 
+                                FROM flight f, route r 
+                                WHERE f.RouteID=r.RouteID AND FlightID='".$_GET["FlightID"]."'");
+    while ($result = mysqli_fetch_array($query)) {
+        $FlightID = $result['FlightID'];
+        $Departure = $result['DepartureTime'];
+        $Arrival = $result['ArrivalTime'];
+        $RouteID = $result['RouteID'];
+        $AirplaneID = $result['AirplaneID'];
+        $Gate = $result['Gate'];
+        $Status = $result['Status'];
+        $Origin = $result['Origin'];
+        $Destination = $result['Destination'];
+    }
+    error_reporting(~E_NOTICE);
+?>
 <html>
-    <head>
-    </head>
-
     <body>
-        <h1>Flight : FD 3306</h1>
-        <p>< Airport Information&emsp;&emsp;&emsp;Edit</p>
+        <h1>FlightID : <?php echo $FlightID?></h1>
         <hr>
-        <p>AirportID&emsp;DMK&emsp;&emsp;&emsp;&emsp;&emsp;AirportName&emsp;Donmueng International Airport</p>
-        <p>RouteID&emsp;R002003&emsp;&emsp;&emsp;&emsp;&emsp;From DMK to CMX</p>
+        <input type="button" value="<Back to AirportInformation" onclick="window.location.href = 'AirportInformation.php'">
+        <form action="EditFlight.php" method="get">
+            <button type="submit" name="Edit" value="<?php echo $FlightID ?>">Edit</button>
+        </form>
+        <form action="#" method="post">
+            <button type="submit" name="Delete" value="1">Delete</button>
+        </form>
+
+        <hr>
+        <p>
+            RouteID&emsp;<?php echo $RouteID?><br>
+            From <?php echo $Origin?> to <?php echo $Destination?><br>
+        </p>
+        
+        <p>
+            Departure Date and Time&emsp;<?php echo $Departure?><br>
+            Arrival Date and Time&emsp;<?php echo $Arrival?><br>
+            AirplaneID&emsp;<?php echo $AirplaneID?><br>
+            Gate&emsp;<?php echo $Gate?><br>
+            Status&emsp;<?php if($Status=='n'){echo "Not Active";}
+                                else{echo "Active";}?><br>
+        </p>
         <br>
-        <p>FlightID&emsp;FD3306&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Duration&emsp;2hours</p>
-        <p>Departure Time&emsp;10:00 (KST)&emsp;&emsp;&emsp;Arrival Time&emsp;12:00 (KST)</p>
-        <P>AirplaneID&emsp;HGT-1234&emsp;&emsp;&emsp;&emsp;&emsp;Gate&emsp;32</P>
-        <br>
-        <p>Start Oparation&emsp;12 Januaury 2020&emsp;&emsp;&emsp;End Oparation&emsp;25 Januaury 2099</p>
-        <p>Day of Oparation&emsp;Everyday&emsp;&emsp;&emsp;&emsp;&emsp;Status&emsp;A</p>
     </body>
 </html>
+
+<?php
+    $Delete=$_POST['Delete'];
+    if($Delete==1){
+        $sql = "DELETE FROM flight WHERE FlightID='$FlightID'";
+        if (!mysqli_query($db,$sql)) {
+            die('Error: ' . mysqli_error($db));
+        }
+        header('location: AirportInformation.php');
+    }
+    
+
+?>
