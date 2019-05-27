@@ -1,6 +1,4 @@
-div.seatCharts-container {
-	/*min-width: 700px;*/
-}
+
 div.seatCharts-cell {
 
 	height: 16px;
@@ -36,6 +34,7 @@ div.seatCharts-space {
 }
 div.seatCharts-row {
 	height: 50px;
+	width: 200px;
 }
 
 div.seatCharts-row:after {
