@@ -7,7 +7,6 @@ body {
     text-align: center;
     width: 100%;
     background: linear-gradient(90deg, rgba(255,212,178,1) 0%, rgba(238,174,202,1) 48%, rgba(148,187,233,1) 100%);
-    
     bottom: 15%;
     height: 100%;
 }
@@ -81,3 +80,5 @@ body {
   .bottom-margin{
       margin-bottom: 100px;
   }
+
+
