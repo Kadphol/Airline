@@ -47,6 +47,7 @@
     $query = mysqli_query($connection,"SELECT * FROM Airport");
 
     while ($result = mysqli_fetch_array($query)) {
+        $AirportID[] = $result['AirportID'];
         $AirportName[] = $result['AirportName'];
     }
 ?>
@@ -195,7 +196,7 @@
                                     </div>
                                     <div class="form-group col-md-6 pl-2">
                                         <label>Returning</label>
-                                        <input type="Date" class="form-control" name="Returning">
+                                        <input type="Date" class="form-control" name="ReturnDate">
                                     </div>
                                 </div>
                         </div>
@@ -205,7 +206,7 @@
                             <div class="row">
                                 <div class="form-group col-md-6 mx-0 pl-0 pr-2">
                                     <label>Number of Passenger</label>
-                                    <input type="text" name="numberpassenger" class="form-control">
+                                    <input type="text" name="NumberPassenger" class="form-control">
                                     </div>
                                     <div class="form-group col-md-6 pl-2">
                                         <label>Class</label>
