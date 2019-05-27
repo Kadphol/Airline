@@ -12,7 +12,7 @@ while ($result = mysqli_fetch_array($query)) {
     }
 }
 // Route
-$query1 = mysqli_query($db, "SELECT * FROM route");
+$query1 = mysqli_query($db, "SELECT * FROM route WHERE Origin LIKE '$myAirportID' OR Destination LIKE '$myAirportID'");
 while ($result1 = mysqli_fetch_array($query1)) {
     $RouteID[] = $result1['RouteID'];
     $Origin[] = $result1['Origin'];
@@ -20,17 +20,17 @@ while ($result1 = mysqli_fetch_array($query1)) {
     $Miles[] = $result1['Miles'];
 }
 //Flight
-$query2 = mysqli_query($db, "SELECT * FROM Flight f JOIN Route r ON f.RouteID=r.RouteID ");
+$query2 = mysqli_query($db, "SELECT * FROM Flight f JOIN Route r ON f.RouteID=r.RouteID
+                            WHERE Origin LIKE '$myAirportID' OR Destination LIKE '$myAirportID'");
 while ($result2 = mysqli_fetch_array($query2)) {
     $FlightID[] = $result2['FlightID'];
     $OriginFlight[] = $result2['Origin'];
     $DestinationFlight[] = $result2['Destination'];
-    $DOO[] = $result2['DOO'];
     $FAirplaneID[] = $result2['AirplaneID'];
     $StatusFlight[] = $result2['Status'];
 }
 //Staff
-$query3 = mysqli_query($db, "SELECT * FROM staff");
+$query3 = mysqli_query($db, "SELECT * FROM staff WHERE AirportID LIKE '$myAirportID'");
 while ($result3 = mysqli_fetch_array($query3)) {
     $StaffID[] = $result3['StaffID'];
     $AirportID[] = $result3['AirportID'];
@@ -39,7 +39,7 @@ while ($result3 = mysqli_fetch_array($query3)) {
     $Position[] = $result3['Position'];
 }
 //Airplane
-$query4 = mysqli_query($db, "SELECT * FROM airplane");
+$query4 = mysqli_query($db, "SELECT * FROM airplane WHERE AirportID LIKE '$myAirportID'");
 while ($result4 = mysqli_fetch_array($query4)) {
     $AirplaneID[] = $result4['AirplaneID'];
     $RegisterDate[] = $result4['RegisterDate'];
@@ -182,7 +182,6 @@ while ($result4 = mysqli_fetch_array($query4)) {
             <tr class="header">
                 <th>FlightID</th>
                 <th>Route</th>
-                <th>Day of Oparation</th>
                 <th>AirplaneID</th>
                 <th>Status</th>
                 <!-- <th> </th> -->
@@ -191,7 +190,6 @@ while ($result4 = mysqli_fetch_array($query4)) {
                 <tr>
                     <td><?php echo $FlightID[$i] ?></td>
                     <td><?php echo $OriginFlight[$i]." - ".$DestinationFlight[$i] ?></td>
-                    <td><?php echo $DOO[$i] ?></td>
                     <td><?php echo $FAirplaneID[$i] ?></td>
                     <td><?php if($StatusFlight[$i]=='n'){echo "Not Active";}
                                 else{echo "Active";} ?></td>
