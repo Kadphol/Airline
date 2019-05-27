@@ -28,9 +28,9 @@
         </form>
         <hr>
         <p>
-            Origin <?php echo $Origin?><br>
-            Destination <?php echo $Destination?><br>
-            Miles <?php echo $Miles?><br>
+            Origin: <?php echo $Origin?><br>
+            Destination: <?php echo $Destination?><br>
+            Miles: <?php echo $Miles?><br>
         </p>
     </body>
 </html>
