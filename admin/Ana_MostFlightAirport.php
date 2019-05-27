@@ -63,15 +63,17 @@
                     <td>Arrival Count</td>
                 </tr>
                 <?php
-                while($row2= mysqli_fetch_array($Aquery)) {
-                    echo "<tr>";
-                    echo "<td>".$ACount."</td>";
-                    echo "<td>".$row2["IATA"]."</td>";
-                    echo "<td>".$row2["AirportName"]."</td>";
-                    echo "<td>".$row2["Country"]."</td>";
-                    echo "<td>".$row2["Arrival_Count"]."</td>";
-                    $ACount++;
-                    echo "</tr>";
+                if($Aquery) {
+                    while($row2= mysqli_fetch_array($Aquery)) {
+                        echo "<tr>";
+                        echo "<td>".$ACount."</td>";
+                        echo "<td>".$row2["IATA"]."</td>";
+                        echo "<td>".$row2["AirportName"]."</td>";
+                        echo "<td>".$row2["Country"]."</td>";
+                        echo "<td>".$row2["Arrival_Count"]."</td>";
+                        $ACount++;
+                        echo "</tr>";
+                    }
                 }
                 ?>
             </table>
