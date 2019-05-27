@@ -34,14 +34,11 @@
                     <hr>
                     <div class="container">
                         <input type="email" class="form-control form-center col-md-5" name="Email" id="Email" placeholder="Email">
-                        <!--<span class = "error"><? echo $emailErr;?></span>--> <!--show email error-->
                         <input type="password" class="form-control form-center col-md-5" name="Password" id="Password" placeholder="Password">
                         <input type="password" class="form-control form-center col-md-5" name="ConPassword" id="ConPassword" placeholder="Confirm Password">
                         <input type="text" class="form-control form-center col-md-5" name="Passport" id="Passport" placeholder="Passport No.">
-                        <!--<span class = "error"><? echo $passportErr;?></span>-->  <!--show passport error-->
                         <input type="text" class="form-control form-center col-md-5" name="FirstName" id="FirstName" placeholder="First Name">
                         <input type="text" class="form-control form-center col-md-5" name="LastName" id="LastName" placeholder="Last Name">
-                        <!--<span class = "error"><? echo $nameErr;?></span>--><label> <!--show name error-->
                     </div>
 
                     <div class="col-md-12">
@@ -68,8 +65,7 @@
                             </div>
 
                             <div class="form-group col-md-3">
-                                <input type="tel" class="form-control" name="PhoneNumber" id="PhoneNumber" placeholder="Phone Number">
-                                <!--<span class = "error"><? echo $phoneErr;?></span>--><br><!--show phone number error-->   
+                                <input type="tel" class="form-control" name="PhoneNumber" id="PhoneNumber" placeholder="Phone Number">  
                             </div>
                         </div>
                     </div>
@@ -98,49 +94,4 @@
         });
         
     });
-// $("#btnRegis").click(function() {
-        //    var email = $("#Email").val();
-        //    var password = $("#Passwprd").val();
-        //    var passport = $("#Passport").val();
-        //    var fname = $("#FirstName").val();
-        //    var lname = $("#LastName").val();
-        //    var sex = $("#sex").val();
-        //    var DOB = $("#DOB").val();
-        //    var country = $("#Country").val();
-        //    var phone = $("PhoneNumber").val();
-        //    $.post("MemberRegis.php",{
-        //        email: email,
-        //        password: password,
-        //        passport: passport,
-        //        fname: fanme,
-        //        lname: lname,
-        //        sex: sex,
-        //        DOB: DOB,
-        //        country: country,
-        //        phone: phone
-        //    }, function(data) {
-        //        if(data == "You have Successfully Registered.....") {
-        //            $("#regisForm")[0].reset();
-        //            alert(data);
-        //        }
-        //        alert(data);
-        //    });
-        // });
-
-
-     // $.ajax({
-    //     type: "POST",
-    //     url: "MemberRegis.php",
-    //     dataType: 'JSON',
-    //     async: false,
-    //     data: $("#regisForm").serialize(),
-    //     success: function(result) {
-    //         console.log("something");
-    //         if(result.status == 1) {
-    //             alert(result.message);
-    //         } else {
-    //             alert(result.message);
-    //         }
-    //     }
-    // });
 </script>
