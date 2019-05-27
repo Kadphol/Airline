@@ -4,7 +4,7 @@
     if(mysqli_connect_errno()) {
         echo "Failed to connect to MYSQL: ".mysqli_connect_error();
     }
-    $Dsql = "SELECT Airport.AirportID AS IATA,Airport.Address AS Country,COUNT(*) AS Departure_Count
+    $Dsql = "SELECT Airport.AirportID AS IATA,Airport.AirportName AS AirportName,Airport.Address AS Country,COUNT(*) AS Departure_Count
             FROM Airport JOIN Route ON Airport.AirportID = Route.Origin 
             JOIN Flight ON Route.RouteID = Flight.RouteID
             GROUP BY Airport.AirportID
@@ -12,7 +12,7 @@
             LIMIT 10";
     $Dquery = mysqli_query($db,$Dsql);
     $DCount = 1;
-    $Asql = "SELECT Airport.AirportID AS IATA,Airport.Address AS Country,COUNT(*) AS Arrival_Count
+    $Asql = "SELECT Airport.AirportID AS IATA,irport.AirportName AS AirportName,Airport.Address AS Country,COUNT(*) AS Arrival_Count
             FROM Airport JOIN Route ON Airport.AirportID = Route.Destination
             JOIN Flight ON Route.RouteID = Flight.RouteID
             GROUP BY Airport.AirportID
@@ -32,6 +32,7 @@
                 <tr>
                     <td>No.</td>
                     <td>IATA</td>
+                    <td>Airport Name</td>
                     <td>Country</td>
                     <td>Departure Count</td>
                 </tr>
@@ -41,6 +42,7 @@
                         echo "<tr>";
                         echo "<td>".$DCount."</td>";
                         echo "<td>".$row1["IATA"]."</td>";
+                        echo "<td>".$row1["AirportName"]."</td>";
                         echo "<td>".$row1["Country"]."</td>";
                         echo "<td>".$row1["Departure_Count"]."</td>";
                         $DCount++;
@@ -56,6 +58,7 @@
                 <tr>
                     <td>No.</td>
                     <td>IATA</td>
+                    <td>Airport Name</td>
                     <td>Country</td>
                     <td>Arrival Count</td>
                 </tr>
@@ -64,6 +67,7 @@
                     echo "<tr>";
                     echo "<td>".$ACount."</td>";
                     echo "<td>".$row2["IATA"]."</td>";
+                    echo "<td>".$row2["AirportName"]."</td>";
                     echo "<td>".$row2["Country"]."</td>";
                     echo "<td>".$row2["Arrival_Count"]."</td>";
                     $ACount++;
