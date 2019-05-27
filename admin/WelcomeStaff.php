@@ -48,7 +48,7 @@
                         <div class="button-bottom" style="font-size:15px;"><br>Staff Registration</div>
                     </a>
 
-                    <a class="button-item col-md-2" value="Analysis Form">
+                    <a class="button-item col-md-2" value="Analysis Form" onclick="window.location.href = 'Analysis.php'">
                         <div class="button-header"><i class="fas fa-sticky-note"></i></div>
                         <div class="button-bottom"><br>Analysis Form</div>
                     </a>
