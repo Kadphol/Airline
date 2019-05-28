@@ -21,20 +21,47 @@
     $Aquery = mysqli_query($db,$Asql);
     $ACount = 1;
 ?>
+<!-- import font roboto -->
+<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+
+<!-- import style -->
+<link rel="stylesheet" type="text/css" href="StaffStyle.css">
+
+<!-- font awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
 <!DOCTYPE html>
     <head>
         <title>Most Flight Airport Report</title>
+        <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
+    <div class="row d-flex justify-content-center">
+    <div class="card-container col-md-6">
+    <div class="card-body">
         <div>
             <h1><b>Most Departure Airport</b></h1>
-            <table>
+            <table class='table text-center'>
                 <tr>
-                    <td>No.</td>
-                    <td>IATA</td>
-                    <td>Airport Name</td>
-                    <td>City</td>
-                    <td>Departure Count</td>
+                    <td><b>No.</b></td>
+                    <td><b>IATA</b></td>
+                    <td><b>Airport Name</b></td>
+                    <td><b>City</b></td>
+                    <td><b>Departure Count</b></td>
                 </tr>
                 <?php
                 if($Dquery) {
@@ -54,13 +81,13 @@
         </div>
         <div>
         <h1><b>Most Arrival Airport</b></h1>
-            <table>
+            <table class='table text-center'>
                 <tr>
-                    <td>No.</td>
-                    <td>IATA</td>
-                    <td>Airport Name</td>
-                    <td>City</td>
-                    <td>Arrival Count</td>
+                    <td><b>No.</b></td>
+                    <td><b>IATA</b></td>
+                    <td><b>Airport Name</b></td>
+                    <td><b>City</b></td>
+                    <td><b>Arrival Count</b></td>
                 </tr>
                 <?php
                 if($Aquery) {
@@ -77,6 +104,9 @@
                 }
                 ?>
             </table>
+        </div>
             </div>
+    </div>
+    </div>
     </body>
 </html>
