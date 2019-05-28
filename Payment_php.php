@@ -13,6 +13,8 @@ $CardNo = $_POST['CardNo'];
 $CVV = $_POST['CVV'];
 $CardType = $_POST['CardType'];
 
+$_SESSION['CardType'] = $CardType;
+
 #GET SESSION
 $FlightID = $_SESSION['FlightID'];
 $AddOnName = $_SESSION['AddOnName'];
