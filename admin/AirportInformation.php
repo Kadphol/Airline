@@ -58,10 +58,36 @@ if($query4) {
 }
 error_reporting(0);
 ?>
+
+
+<!-- import font roboto -->
+<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+
+<!-- import style -->
+<link rel="stylesheet" type="text/css" href="StaffStyle.css">
+
+<!-- font awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
 <html>
 
 <head>
+    <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <style>
         body {
             font-family: Arial;
@@ -139,15 +165,28 @@ error_reporting(0);
 </head>
 
 <body>
+    <div class="row d-flex justify-content-center" style="margin-bottom:30%;">
+        <div class="card-container col-md-8">
+            <div class="card-body">
 
-    <h1>Airport Information</h1>
-    <input type="button" value="<Back" onclick="window.location.href = 'WelcomeStaff.php'">
+
+
+    <h1><b>Airport Information</b></h1>
+    <input type="button"  class="btn btn-primary" value="<Back" onclick="window.location.href = 'WelcomeStaff.php'">
     <hr>
-    <h3>AirportID&emsp;&emsp;AirportName</h3>
-    <p><?php echo $myAirportID ?>&emsp;&emsp;&emsp;&emsp;<?php echo $myAirportName ?></p>
-    <h3>Street Address</h3>
+    <table class="table" style="border-width:0px;">
+    <tr>
+        <td>AirportID</td>
+        <td>AirportName</td>
+    </tr>
+    <tr>
+        <td><?php echo $myAirportID ?></td>
+        <td><?php echo $myAirportName ?></td>
+    </tr>
+    </table>
+    <h3><b>Street Address</b></h3>
     <p><?php echo $Address ?></p>
-    <h3>Airport Tax</h3>
+    <h3><b>Airport Tax</b></h3>
     <p><?php echo $Tax ?> THB</p>
 
     <div class="tab">
@@ -159,11 +198,11 @@ error_reporting(0);
 
     <div id="Route" class="tabcontent">
         <p>RouteID
-            <input type="text" class="myInput" onkeyup="myFunction(0)" placeholder="Search for RouteID.." title="Type in a name" />
+            <input type="text" class="myInput" onkeyup="myFunction(0)" placeholder="Search for RouteID.." class="form-control" title="Type in a name" />
             &emsp;&emsp;&emsp;&emsp;&emsp;
-            <input type="button" value="+Add Route" onclick="window.location.href = 'AddRoute.php'">
+            <input type="button" value="+Add Route" class="btn btn-primary" onclick="window.location.href = 'AddRoute.php'">
         </p>
-        <table class="myTable">
+        <table class="table">
             <tr class="header">
                 <th>RouteID</th>
                 <th>Origin</th>
@@ -186,11 +225,11 @@ error_reporting(0);
 
     <div id="Flight" class="tabcontent">
         <p>FlightID
-            <input type="text" class="myInput" onkeyup="myFunction(1)" placeholder="Search for FlightID.." title="Type in a name" />
+            <input type="text" class="myInput" onkeyup="myFunction(1)" class="form-control" placeholder="Search for FlightID.." title="Type in a name" />
             &emsp;&emsp;&emsp;&emsp;&emsp;
-            <input type="button" value="+Add Flight" onclick="window.location.href = 'AddFlight.php'">
+            <input type="button" value="+Add Flight" class="btn btn-primary" onclick="window.location.href = 'AddFlight.php'">
         </p>
-        <table class="myTable">
+        <table class="table">
             <tr class="header">
                 <th>FlightID</th>
                 <th>Departure Date</th>
@@ -217,11 +256,11 @@ error_reporting(0);
 
     <div id="Airplane" class="tabcontent">
         <p>AirplaneID
-            <input type="text" class="myInput" onkeyup="myFunction(2)" placeholder="Search for AirplaneID.." title="Type in a name" />
+            <input type="text" class="myInput" onkeyup="myFunction(2)" class="form-control" placeholder="Search for AirplaneID.." title="Type in a name" />
             &emsp;&emsp;&emsp;&emsp;&emsp;
-            <input type="button" value="+Add Airplane" onclick="window.location.href = 'AddAirplane.php'">
+            <input type="button" value="+Add Airplane" class="btn btn-primary" onclick="window.location.href = 'AddAirplane.php'">
         </p>
-        <table class="myTable">
+        <table class="table">
             <tr class="header">
                 <th>AirplaneID</th>
                 <th>Register Date</th>
@@ -244,11 +283,11 @@ error_reporting(0);
 
     <div id="Staff" class="tabcontent">
         <p>StaffID
-            <input type="text" class="myInput" onkeyup="myFunction(3)" placeholder="Search for StaffID.." title="Type in a name" />
+            <input type="text" class="myInput" onkeyup="myFunction(3)" class="form-control" placeholder="Search for StaffID.." title="Type in a name" />
             &emsp;&emsp;&emsp;&emsp;&emsp;
-            <input type="button" value="+Add Staff" onclick="window.location.href = 'StaffRegis.php'">
+            <input type="button" value="+Add Staff" class="btn btn-primary" onclick="window.location.href = 'StaffRegis.php'">
         </p>
-        <table class="myTable">
+        <table class="table">
             <tr class="header">
                 <th>StaffID</th>
                 <th>AirportID</th>
@@ -266,6 +305,9 @@ error_reporting(0);
                 </tr>
             <?php } ?>
         </table>
+    </div>
+    </div>
+        </div>
     </div>
 
 </body>
