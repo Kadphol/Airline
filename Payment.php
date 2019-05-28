@@ -223,7 +223,7 @@ $_SESSION['interval'] = $interval;
                         </div>
                 </div> 
             <div class="form-group col-md-5 offset-sm-3">
-                <input type="submit" class="btn btn-primary mt-2 offset-sm-4" value="Search Flight">    
+                <input type="submit" class="btn btn-primary mt-2 offset-sm-4" value="Pay">    
             </div>
         </div>
     </div>
