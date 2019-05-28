@@ -40,6 +40,7 @@
             exit('please check your input');
         }
     }
+    
 
     $FlightID =  $_SESSION['FlightID'];
     $AddOnName = $_SESSION['AddOnName'];
@@ -51,6 +52,16 @@
         $AddOnPrice = $addon['AddOnPrice'];
     }
     
+    if($_SESSION['loggedIN'] == '1') {
+        $mileSQL = mysqli_query($connection,"SELECT Route.Miles FROM Flight f JOIN Route r ON f.RouteID = r.RouteID WHERE f.FlightID = '$FlightID'");
+        $addpoint = mysqli_fetch_array($mileSQL);
+        $memSQL = mysqli_query($connection,"SELECT MilesPoint FROM Member WHERE MemberID = '$MemberID'");
+        $samepoint = mysqli_fetch_array($memSQL);
+        $updateMile = mysqli_query($connection,
+                                    "UPDATE Member SET MilesPoint = '$samepoint + $addpoint' WHERE MemberID = '$MemberID'" );
+
+    }
+
     $sql = "SELECT bo.BookingID AS BookingID,bi.PayDate AS PayDate,bi.BillingID AS BillingID,bo.SeatID AS SeatID,bi.CardNo AS CardNo,bi.AmountPaid AS AmountPaid,f.Price AS FlightPrice
             FROM Flight f JOIN Booking bo ON f.FlightID = bo.FlightID
             JOIN Billing bi ON bo.BillingID = bi.BillingID
