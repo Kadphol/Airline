@@ -12,6 +12,7 @@ body {
 }
 
 .card-container {
+    margin-top: 15%;
     margin-left: 17%;
     margin-right: auto;
     background-color: #ffffff;
@@ -79,5 +80,3 @@ body {
   .bottom-margin{
       margin-bottom: 100px;
   }
-
-
