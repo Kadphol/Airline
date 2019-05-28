@@ -29,7 +29,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
-<body style="top:55%; overflow:hidden;">
+<body style="top:35%; overflow:hidden;">
 
     <div class="container col-md-12">
         <div class="row ">
@@ -61,7 +61,7 @@
                 <div class="row justify-content-center">
                     <a class="button-item col-md-2" value="Manage Airport" onclick="window.location.href = 'AirportInformation.php'">
                         <div class="button-header"><i class="fas fa-tasks"></i></div>
-                        <div class="button-bottom"><br>Manage Airport</div>
+                        <div class="button-bottom"><br>Manage Route</div>
                     </a>
 
                     <a class="button-item col-md-2" value="Manage Flight" onclick="window.location.href = 'AirportInformation.php'">
