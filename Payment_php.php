@@ -101,5 +101,5 @@ for ($i = 0; $i < sizeof($FirstName); $i++){
 }
 
 
-#header('location: ConfirmBooking.php');
+header('location: ConfirmBooking.php');
 ?>
