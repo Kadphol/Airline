@@ -16,6 +16,7 @@ $Sex = $_POST['sex'];
 
 $_SESSION['FirstName'] = $FirstName;
 $_SESSION['LastName'] = $LastName;
+$_SESSION['DOB'] = $DOB;
 
 
 for($i = 0; $i < sizeof($FirstName) ; $i++){
