@@ -9,14 +9,15 @@
                                 WHERE f.RouteID=r.RouteID AND FlightID='".$_GET["FlightID"]."'");
     while ($result = mysqli_fetch_array($query)) {
         $FlightID = $result['FlightID'];
-        $Departure = $result['DepartureTime'];
-        $Arrival = $result['ArrivalTime'];
+        $Departure = $result['DepartureDate'];
+        $Arrival = $result['ArrivalDate'];
         $RouteID = $result['RouteID'];
         $AirplaneID = $result['AirplaneID'];
         $Gate = $result['Gate'];
         $Status = $result['Status'];
         $Origin = $result['Origin'];
         $Destination = $result['Destination'];
+        $Price = $result['Price'];
     }
     error_reporting(~E_NOTICE);
 ?>
@@ -45,6 +46,7 @@
             Gate&emsp;<?php echo $Gate?><br>
             Status&emsp;<?php if($Status=='n'){echo "Not Active";}
                                 else{echo "Active";}?><br>
+            Price&emsp;<?php echo $Price ?><br>
         </p>
         <br>
     </body>

@@ -27,6 +27,8 @@ $query2 = mysqli_query($db, "SELECT * FROM Flight f JOIN Route r ON f.RouteID=r.
 if($query2) {
     while ($result2 = mysqli_fetch_array($query2)) {
         $FlightID[] = $result2['FlightID'];
+        $DepartureDate[] = $result2['DepartureDate'];
+        $ArrivalDate[] = $result2['ArrivalDate'];
         $OriginFlight[] = $result2['Origin'];
         $DestinationFlight[] = $result2['Destination'];
         $FAirplaneID[] = $result2['AirplaneID'];
@@ -191,6 +193,8 @@ error_reporting(0);
         <table class="myTable">
             <tr class="header">
                 <th>FlightID</th>
+                <th>Departure Date</th>
+                <th>Arrival Date</th>
                 <th>Route</th>
                 <th>AirplaneID</th>
                 <th>Status</th>
@@ -199,6 +203,8 @@ error_reporting(0);
             <?php for ($i = 0; $i < sizeof($FlightID); $i++) { ?>
                 <tr>
                     <td><?php echo $FlightID[$i] ?></td>
+                    <td><?php echo $DepartureDate[$i] ?></td>
+                    <td><?php echo $ArrivalDate[$i] ?></td>
                     <td><?php echo $OriginFlight[$i]." - ".$DestinationFlight[$i] ?></td>
                     <td><?php echo $FAirplaneID[$i] ?></td>
                     <td><?php if($StatusFlight[$i]=='n'){echo "Not Active";}

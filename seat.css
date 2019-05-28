@@ -1,12 +1,9 @@
-body {
-    font-family: 'Roboto', sans-serif;
-  background-color:#fafafa;
-}
+
 a {
     color: #b71a4c;
 }
 .front-indicator {
-    width: 145px;
+    width: 135px;
     margin: 5px 32px 15px 32px;
     background-color: #f6f6f6;	
     color: #adadad;
@@ -14,16 +11,7 @@ a {
     padding: 3px;
     border-radius: 5px;
 }
-.wrapper {
-    width: 100%;
-    text-align: center;
-    margin-top:150px;
-}
-.container {
-    margin: 0 auto;
-    width: 500px;
-    text-align: left;
-}
+
 .booking-details {
     float: left;
     text-align: left;
@@ -53,32 +41,42 @@ div.seatCharts-seat {
 }
 div.seatCharts-row {
     height: 35px;
-    width: 200px;
+    width: 400px;
 }
 div.seatCharts-seat.available {
-    background-color: #B9DEA0;
-
+    background-color: #91D7CA;
 }
 div.seatCharts-seat.available.first-class {
-/* 	background: url(vip.png); */
-    background-color: #6f42c1;
+    background-color: #F496B5;
     color: #ffffff;
-    border-color: #6f42c1;
+    border-color: #F496B5;
     border-style: solid;
     border-width: 1px;
 }
+
+div.seatCharts-seat.available.business-class {
+    background-color: #BD70CF;
+    color: #ffffff;
+    border-color: #BD70CF;
+    border-style: solid;
+    border-width: 1px;
+}
+
 div.seatCharts-seat.focused {
-    background-color: #76B474;
+    background-color: #FFB1D3;
 }
 div.seatCharts-seat.selected {
-    background-color: #E6CAC4;
+    background-color: #69BFD8;
 }
 div.seatCharts-seat.unavailable {
-    background-color: #472B34;
+    background-color: transparent;
+    color: #F496B5;
+    border-color: #F496B5;
+    border-style: solid;
+    border-width: 1px;
 }
 div.seatCharts-container {
     border-right: 1px dotted #adadad;
-    width: 200px;
     padding: 20px;
     float: left;
 }

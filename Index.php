@@ -22,7 +22,6 @@
 <!--LOGIN PHP-->
 <?php
     session_start();
-    #include("config/config.php");
     $connection = mysqli_connect("localhost", "root", "", "airline");
     if (mysqli_connect_errno()) {
         echo "Failed to connect to MySQL: " . mysqli_connect_error();
@@ -32,11 +31,18 @@
         $email = $connection->real_escape_string($_POST['email']);
         $password = $connection->real_escape_string($_POST['password']);
         
-        $data = $connection->query("SELECT email FROM member WHERE email='$email' AND password='$password'");
+        $data = $connection->query("SELECT * FROM member WHERE email='$email' AND password='$password'");
+        while ($result = mysqli_fetch_array($data)) {
+            $MemberID = $result['MemberID'];
+            $Email = $result['email'];
+            }
+
+            
    
         if($data -> num_rows > 0){
             $_SESSION['loggedIN'] = '1';
             $_SESSION['email'] = $email;
+            $_SESSION['MemberID'] = $MemberID;
             exit('login success...');
         }
         else{
@@ -44,9 +50,12 @@
         }
     }
 
+
+    
     $query = mysqli_query($connection,"SELECT * FROM Airport");
 
     while ($result = mysqli_fetch_array($query)) {
+        $AirportID[] = $result['AirportID'];
         $AirportName[] = $result['AirportName'];
     }
 ?>
@@ -58,7 +67,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
 
-    <body style="bottom: 0%">
+    <body style="bottom: 0%;">
         <!--NAVBAR-->
         <?php
         if (isset($_SESSION['loggedIN']))
@@ -71,11 +80,6 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="Mybooking.php">Manage Booking</a>
-                    </li>
-                </ul>
                 <ul class="navbar-nav ml-auto nav-flex-icons">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
@@ -195,7 +199,7 @@
                                     </div>
                                     <div class="form-group col-md-6 pl-2">
                                         <label>Returning</label>
-                                        <input type="Date" class="form-control" name="Returning">
+                                        <input type="Date" class="form-control" name="ReturnDate">
                                     </div>
                                 </div>
                         </div>
@@ -205,13 +209,13 @@
                             <div class="row">
                                 <div class="form-group col-md-6 mx-0 pl-0 pr-2">
                                     <label>Number of Passenger</label>
-                                    <input type="text" name="numberpassenger" class="form-control">
+                                    <input type="text" name="NumberPassenger" class="form-control">
                                     </div>
                                     <div class="form-group col-md-6 pl-2">
                                         <label>Class</label>
                                         <select name="Class" class="form-control">
                                             <option value="" Selected>--Selected Class--</option>
-                                                  <option value="FirstClass" >First Class</option>
+                                                  <option value="First" >First Class</option>
                                             <option value="Business">Business</option>
                                             <option value="Economy">Economy</option>
                                         </select>
@@ -254,5 +258,5 @@
                 }
             )
         });
-    });
+  
 </script>

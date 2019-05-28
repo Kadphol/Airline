@@ -9,8 +9,8 @@ $query = mysqli_query($db, "SELECT *
                                 WHERE f.RouteID=r.RouteID AND FlightID='" . $_GET["Edit"] . "'");
 while ($result = mysqli_fetch_array($query)) {
     $FlightID = $result['FlightID'];
-    $Departure = $result['DepartureTime'];
-    $Arrival = $result['ArrivalTime'];
+    $Departure = $result['DepartureDate'];
+    $Arrival = $result['ArrivalDate'];
     $RouteID = $result['RouteID'];
     $AirplaneID = $result['AirplaneID'];
     $Gate = $result['Gate'];
@@ -22,7 +22,7 @@ while ($result = mysqli_fetch_array($query)) {
 $query1 = mysqli_query($db, "SELECT * FROM Airplane");
 while ($result1 = mysqli_fetch_array($query1)) {
     $AllAirplaneID[] = $result1['AirplaneID'];
-    $AllAirport[] = $result1['AirportID'];
+    //$AllAirport[] = $result1['AirportID'];
 }
 //Route
 $query2 = mysqli_query($db, "SELECT * FROM route");
@@ -70,13 +70,13 @@ error_reporting(~E_NOTICE);
         Departure Date and Time<input type="datetime-local" name="Departure" value="Departure"><br>
         Arrival Date and Time<input type="datetime-local" name="Arrival" value="Arrival"><br>
         AirplaneID 
-            <select name="AirplaneID">
-                <option value="" Selected>--AirplaneID--</option>
-                <?php
-                for ($i = 0; $i < sizeof($AllAirplaneID); $i++) { ?>
-                    <option value="<?php echo $AllAirplaneID[$i]; ?>"> <?php echo $AllAirplaneID[$i]." - ".$AllAirport[$i] ?> </option>
-                <?php } ?>
-            </select><br>
+        <select name="AirplaneID">
+            <option value="" Selected>--AirplaneID--</option>
+            <?php
+            for ($i = 0; $i < sizeof($AllAirplaneID); $i++) { ?>
+                <option value="<?php echo $AllAirplaneID[$i]; ?>"> <?php echo $AllAirplaneID[$i]." - ".$AllAirport[$i] ?> </option>
+            <?php } ?>
+        </select><br>
         gate <input type="text" name="Gate"><br>
         Status
         <select name="Status">
@@ -84,6 +84,7 @@ error_reporting(~E_NOTICE);
             <option value="n">Not Active</option>
             <option value="a">Active</option>
         </select><br>
+        Price<input type="text" name="Price"><br>
         <button type="Submit" name="Edit" value="<?php echo $FlightID ?>" >Edit</button><br>
     </form>
    
