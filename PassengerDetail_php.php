@@ -14,6 +14,10 @@ $LastName = $_POST['LastName'];
 $DOB = $_POST['DOB'];
 $Sex = $_POST['sex'];
 
+$_SESSION['FirstName'] = $FirstName;
+$_SESSION['LastName'] = $LastName;
+
+
 for($i = 0; $i < sizeof($FirstName) ; $i++){
     $sql = "INSERT INTO passenger (Sex,FirstName,LastName,DOB)
     VALUES('$Sex[$i]','$FirstName[$i]','$LastName[$i]','$DOB[$i]')";
@@ -21,6 +25,8 @@ for($i = 0; $i < sizeof($FirstName) ; $i++){
         die('Error: ' . mysqli_error($connection));
     }
 }
+
+
     if(sizeof($SplitSeat)>1){
         for($j = 1; $j < sizeof($SplitSeat) ; $j++){
             $SplitMerge = json_encode($SplitSeat);
