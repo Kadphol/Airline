@@ -123,7 +123,7 @@ $Class = $_SESSION['Class'];
 ?>
 
     <!--SELECT SEAT-->
-    <div class="card-container col-md-8 " style="height:600px; top:10%; margin-bottom:10%;">
+    <div class="card-container col-md-8 " style="height:600px; margin-bottom:10%;">
         <div class="card-body">
 
             <h1><b>Select Seat</b></h1>
@@ -314,7 +314,7 @@ $Class = $_SESSION['Class'];
                 $i = '0' + $z;
                 sc.get([$i + '_A', $i + '_B', $i + '_C', $i + '_D', $i + '_E', $i + '_F', $i + '_G']).status('unavailable');
             }
-        } else if (selectedClass == 'Bussiness') {
+        } else if (selectedClass == 'Business') {
             for ($z = firstClassInitial; $z <= firstClassEnd; $z++) {
                 $i = '0' + $z;
                 sc.get([$i + '_A', $i + '_B', $i + '_C', $i + '_D', $i + '_E', $i + '_F', $i + '_G']).status('unavailable');
@@ -324,12 +324,12 @@ $Class = $_SESSION['Class'];
                 sc.get([$i + '_A', $i + '_B', $i + '_C', $i + '_D', $i + '_E', $i + '_F', $i + '_G']).status('unavailable');
             }
         } else {
-            for ($z = businessInitial; $z <= businessEnd; $z++) {
-
+            for ($z = firstClassInitial; $z <= firstClassEnd; $z++) {
                 $i = '0' + $z;
                 sc.get([$i + '_A', $i + '_B', $i + '_C', $i + '_D', $i + '_E', $i + '_F', $i + '_G']).status('unavailable');
             }
-            for ($z = firstClassInitial; $z <= firstClassEnd; $z++) {
+            for ($z = businessInitial; $z <= businessEnd; $z++) {
+
                 $i = '0' + $z;
                 sc.get([$i + '_A', $i + '_B', $i + '_C', $i + '_D', $i + '_E', $i + '_F', $i + '_G']).status('unavailable');
             }

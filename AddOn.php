@@ -67,9 +67,12 @@
           $Description[] = $result['Description'];
           }
 
-
-
-
+          #QUERY AddOn PRICE
+        $query1 = mysqli_query($connection,"SELECT * FROM AddOn WHERE ClassName='$ClassName'");
+        while ($result1 = mysqli_fetch_array($query1)) {
+            $AddOnPrice[] = $result1['AddOnPrice'];
+            $AddOnID[] = $result1['AddOnID'];
+        }
 ?>
 
 <html>
@@ -92,11 +95,6 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="Mybooking.php">Manage Booking</a>
-                    </li>
-                </ul>
                 <ul class="navbar-nav ml-auto nav-flex-icons">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
@@ -143,7 +141,7 @@
         ?>
 
         <!--ADD ON-->
-        <div class="card-container col-md-8" style="top:10%;">
+        <div class="card-container col-md-8">
           <div class="card-body">
             <h2><b>Select Add-On</b></h2>
             <hr>
@@ -162,7 +160,9 @@
                         echo $SplitDescription[0].'<br>'.'<br>'.
                              $SplitDescription[1].'<br>'.'<br>'.
                              $SplitDescription[2].'<br>'.'<br>'.
-                             $SplitDescription[3].'</br>'.'<br>';
+                             $SplitDescription[3].'</br>'.'<br>'.'<br>';
+                        
+                        echo "<b>Price</b>"." ".$AddOnPrice[$i].'</br>'.'<br>';
                       ?>
 
                 <?php $linkAddress = "SelectSeat.php?AddOnName=".$AddOnName[$i];?>
