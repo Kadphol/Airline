@@ -58,7 +58,7 @@
         $memSQL = mysqli_query($connection,"SELECT MilesPoint FROM Member WHERE MemberID = '$MemberID'");
         $samepoint = mysqli_fetch_array($memSQL);
         $updateMile = mysqli_query($connection,
-                                    "UPDATE Member SET MilesPoint = '$samepoint + $addpoint' WHERE MemberID = '$MemberID'" );
+                                    "UPDATE Member SET MilesPoint =  MilesPoint + '$addpoint' WHERE MemberID = '$MemberID'" );
 
     }
 
