@@ -36,7 +36,6 @@ if (isset($_POST['login'])) {
     $password = $connection->real_escape_string($_POST['password']);
 
     $data = $connection->query("SELECT email FROM member WHERE email='$email' AND password='$password'");
-    #$query = $connection->query("SELECT * FROM Flight WHERE email='$email' AND password='$password'");
 
     if ($data->num_rows > 0) {
         $_SESSION['loggedIN'] = '1';
@@ -190,8 +189,8 @@ $RowQuery = mysqli_query($connection,"SELECT Row FROM AirplaneSeat WHERE Airplan
 </html>
 
 <script>
-    $(document).ready(function() {
-        $('#login').on('click', function() {
+    $(document).ready(function() { //when document ready
+        $('#login').on('click', function() { //login form
             var email = $('#email').val();
             var password = $('#password').val();
             if (email == '' || password == '')
@@ -218,8 +217,9 @@ $RowQuery = mysqli_query($connection,"SELECT Row FROM AirplaneSeat WHERE Airplan
 </script>
 
 <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script src="jquery.seat-charts.js"></script>
+<script src="jquery.seat-charts.js"></script> <!-- import js library for select seat -->
 <script>
+    //Select seat 
     var selectedClass = "<?php echo $Class ?>";
     var numberOfPassenger = "<?php echo $NumberOfPassenger ?>";
     let data
@@ -398,7 +398,7 @@ $RowQuery = mysqli_query($connection,"SELECT Row FROM AirplaneSeat WHERE Airplan
         document.getElementById("Button").disabled = false;
     }
 
-    function sendData() {
+    function sendData() { //send seat data to next page
         let queryStringArr = ''
         data.seatIds.forEach((e, i) => {
             console.log(e)
@@ -413,9 +413,5 @@ $RowQuery = mysqli_query($connection,"SELECT Row FROM AirplaneSeat WHERE Airplan
         console.log(urlEndpoint)
         console.log(queryStringArr)
         window.location.replace(urlEndpoint)
-        // console.log(data.seatIds)
-        // return fetch('/airline/PassengerDetail.php', {
-        //     method: 'GET',
-        // })
     }
 </script>

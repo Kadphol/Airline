@@ -33,7 +33,6 @@ if (isset($_POST['login'])) {
     $password = $connection->real_escape_string($_POST['password']);
 
     $data = $connection->query("SELECT email FROM member WHERE email='$email' AND password='$password'");
-    #$query = $connection->query("SELECT * FROM Flight WHERE email='$email' AND password='$password'");
 
     if ($data->num_rows > 0) {
         $_SESSION['loggedIN'] = '1';

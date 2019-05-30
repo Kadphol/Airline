@@ -216,6 +216,7 @@ while ($result1 = mysqli_fetch_array($paymentQuery)) {
                 </div>
             </div>
         </div>
+<<<<<<< HEAD
     <div class="card-container col-md-8">
         <div class="card-body text-center">
             <i class="far fa-check-circle fa-5x text-success"></i><br><br>
@@ -268,6 +269,59 @@ while ($result1 = mysqli_fetch_array($paymentQuery)) {
                         <h4><b>Flight</b></h4>
                         <p>Subtotal <?php echo $NumberofPassenger ?>x Passenger&emsp;<?php echo  $FlightPrice*$NumberofPassenger ?> THB</p>
                         <h4> <b>Add-ons&Fees</b></h4>
+=======
+        
+        <div class="card-container col-md-8 mt-4">
+            <div class="card-body">
+                <h3><b>Billing ID : <?php echo $BillingID ?></b></h3>
+                <hr>
+                <div class="row mt-3">
+                    <div class="col-md-6 border-right">
+                        <div class="container">
+                            <h4><i class="far fa-check-circle text-success"></i> <b>Payment Confirmed</b></h4>
+                            <h4><b>Flight</b></h4>
+                            <p>Subtotal 1x Passenger&emsp;<?php echo  $FlightPrice?> THB</p>
+                            <h4> <b>Add-ons&Fees</b></h4>
+                            <table style="width:70%">
+                                <tr>
+                                    <td>Add-on Price </td>
+                                    <td></td>
+                                    <td><?php echo $AddOnPrice ?></td>
+                                    <td>THB</td>
+                                </tr>
+                                <tr>
+                                    <td>Airport tax </td>
+                                    <td></td>
+                                    <td><?php echo $AirportTax?></td>
+                                    <td>THB</td>
+                                </tr>
+                            </table>
+                            <br>
+                            <table style="width:70%">
+                                <tr>
+                                    <td>Total amount</td>
+                                    <td></td>
+                                    <td><?php echo $FlightPrice+$AddOnPrice+$AirportTax ?></td>
+                                    <td>THB</td>
+                                </tr>
+                                <tr>
+                                    <td>Payment fee</td>
+                                    <td></td>
+                                    <td><?php echo $PaymentFee ?></td>
+                                    <td>THB</td>
+                                </tr>
+                                <tr>
+                                    <td>Total Paid</td>
+                                    <td></td>
+                                    <td><?php echo $AmountPaid ?></td>
+                                    <td>THB</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h4><b>Payment Date</b></h4>
+>>>>>>> 6362a9a7dd6a7af741f60f02731e6f99575adc00
                         <table style="width:70%">
                             <tr>
                                 <td>Add-on Price </td>
@@ -354,6 +408,7 @@ while ($result1 = mysqli_fetch_array($paymentQuery)) {
             </div>
             <div class="ml-4 mt-0">
                 <h4><b>Passenger Detail</b></h4>
+<<<<<<< HEAD
                 <?php for ($i = 0; $i < $NumberofPassenger; $i++) { ?>
                     Passenger No. <?php echo $i+1 ?>
                     <table style="width: 50%">
@@ -368,6 +423,17 @@ while ($result1 = mysqli_fetch_array($paymentQuery)) {
                             <td><b>Date of Birth :</b></td>
                             <td><?php echo $PassengerDOB[$i] ?></td>
                         </tr>
+=======
+                <table style="width: 30%">
+                    <tr>
+                        <td>Name : </td>
+                        <td><?php for($i=0;$i<sizeof($FirstName);$i++) {echo $FirstName[$i];} echo " "; for($i=0;$i<sizeof($LastName);$i++) {echo $LastName[$i];} ?></td>
+                    </tr>
+                    <tr>
+                        <td>Date of Birth :</td>
+                        <td><?php echo $PassengerDOB[0] ?></td>
+                    </tr>
+>>>>>>> 6362a9a7dd6a7af741f60f02731e6f99575adc00
                 </table>
                 <br>
                 <?php } ?>

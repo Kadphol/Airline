@@ -1,11 +1,10 @@
 <?php
-    #include("admin/config/config.php");
-    $db = mysqli_connect("localhost","root","","airline");
-    session_start();
-    if(isset($_SESSION['MEmail'])) {
+    $db = mysqli_connect("localhost","root","","airline"); //database connect
+    session_start(); //start session
+    if(isset($_SESSION['MEmail'])) { //check if already logged in
         $email = $_SESSION['MEmail'];
         $query = "SELECT * FROM Member WHERE Email = '$email'";
-        $result = mysqli_query($db,$query);
+        $result = mysqli_query($db,$query); //query profile information
         $row = mysqli_fetch_assoc($result);
         $email = $row['Email'];
         $name = $row['FirstName']." ".$row['LastName'];
@@ -55,7 +54,7 @@
                 <hr>
                 <p>
                     <b>Email</b><br>
-                    &emsp;<?echo $email;?> <!--eiei@gmail.com-->
+                    &emsp;<?echo $email;?> 
                 </p>
             </div>
         </div>
@@ -68,15 +67,15 @@
                 <p>
                 <b>Personal Info</b><br>
                     &emsp;<b>Name</b><br>
-                    &emsp;<?echo $name;?><!--Namjoon Kim--><br><br>
+                    &emsp;<?echo $name;?><br><br>
                     &emsp;<b>Passport No.</b><br>
-                    &emsp;<?echo $passport;?><!--pa123456789--><br><br>
+                    &emsp;<?echo $passport;?><br><br>
                     &emsp;<b>Milespoint</b><br>
-                    &emsp;<?echo $miles;?><!--223.77--><br><br>
+                    &emsp;<?echo $miles;?><br><br>
                     &emsp;<b>Date of Birth</b><br>
-                    &emsp;<?echo $DOB;?><!--31/10/1999--><br><br>
+                    &emsp;<?echo $DOB;?><br><br>
                     &emsp;<b>Phone Number</b><br>
-                    &emsp;<?echo $phone;?><!--(+66)65445620-->
+                    &emsp;<?echo $phone;?>
                 </p>
             </div>
         </div>

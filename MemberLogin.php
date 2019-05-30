@@ -1,5 +1,4 @@
 <?php
-    #include("admin/config/config.php");
     session_start();
     $db = mysqli_connect("localhost","root","","airline");
     if (mysqli_connect_errno()) {
