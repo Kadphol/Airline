@@ -46,15 +46,35 @@ if (mysqli_connect_errno()) {
             <hr>
             <p>
                 <!-- AirplaneID <input type="text" name="AirplaneID"> Auto Increment -->
-                Register Date <input type="date" name="RegisDate"><br><br>
-                Model No. <input type="text" name="ModelNo">
-                Payload <input type="text" name="Payload"><br><br>
-                Status
-                <select name="Status">
-                    <option value="" Selected>--Status--</option>
-                    <option value="n">Not Active</option>
-                    <option value="a">Active</option>
-                </select>
+                <div class="row justify-content-left">
+                    <div class="form-group col-md-5">
+                        <label>Register Date </label>
+                        <input type="date" class="form-control" name="RegisDate">
+                    </div>
+                </div>
+                <div class="row justify-content-left">
+                    <div class="form-group col-md-5">
+                        <label>Model No. </label>
+                        <input type="text" class="form-control" name="ModelNo">
+                    </div>
+                </div>
+                <div class="row justify-content-left">
+                    <div class="form-group col-md-5">
+                        <label>Payload</label>
+                        <input type="text" class="form-control" name="Payload">
+                    </div>
+                </div>
+
+                <div class="row justify-content-left">
+                    <div class="form-group col-md-5">
+                        <label>Status</label>
+                        <select name="Status" class="form-control">
+                            <option value="" Selected>--Status--</option>
+                            <option value="n">Not Active</option>
+                            <option value="a">Active</option>
+                        </select>
+                    </div>
+                </div>
             </p>
             <hr>
             <h2>Seat</h2>
