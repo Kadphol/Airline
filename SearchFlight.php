@@ -216,8 +216,8 @@
 </html>
 
 <script>
-    $(document).ready(function(){
-        $('#login').on('click',function(){
+    $(document).ready(function(){ //when documnet ready
+        $('#login').on('click',function(){ //login form
             var email = $('#email').val();
             var password = $('#password').val();
             if(email == '' || password == '')

@@ -1,13 +1,10 @@
 <?php
-    #include("admin/config/config.php");
     session_start();
     $errors = array();
     $db = mysqli_connect("localhost","root","","airline");
     if (mysqli_connect_errno()) {
         echo "Failed to connect to MYSQL: ".mysqli_connect_error();
     } 
-    #echo "You have Successfully Registered.....";
-    #echo $_POST["email"];
     $email = $_POST["Email"];
     $pwd = mysqli_real_escape_string($db,$_POST["Password"]);
     $passport = mysqli_real_escape_string($db,$_POST["Passport"]);
@@ -36,9 +33,7 @@
         } else{
             $_SESSION['MName'] = $fname;
             $_SESSION['MEmail'] = $email;
-            #$_SESSION['success'] = "You are now loggin in";
             echo "success";
-            #header('location: index.php');
         }
     }
 

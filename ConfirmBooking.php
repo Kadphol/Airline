@@ -127,10 +127,6 @@
                     <div class="col-md-6 border-right">
                         <div class="container">
                             <h4><i class="far fa-check-circle text-success"></i> <b>Payment Confirmed</b></h4>
-                            <!-- <p>
-                                <b>Contact person</b> : Kim Namjoon<br>
-                                <b>Email</b> : eiei@gmail.com
-                            </p> -->
                             <h4><b>Flight</b></h4>
                             <p>Subtotal 1x Passenger&emsp;<?php echo  $FlightPrice?> THB</p>
                             <h4> <b>Add-ons&Fees</b></h4>
@@ -222,10 +218,6 @@
                         <td>Name : </td>
                         <td><?php for($i=0;$i<sizeof($FirstName);$i++) {echo $FirstName[$i];} echo " "; for($i=0;$i<sizeof($LastName);$i++) {echo $LastName[$i];} ?></td>
                     </tr>
-                    <!-- <tr>
-                        <td>Nationality/Region : </td>
-                        <td>Thailand</td>
-                    </tr> -->
                     <tr>
                         <td>Date of Birth :</td>
                         <td><?php echo $PassengerDOB[0] ?></td>
