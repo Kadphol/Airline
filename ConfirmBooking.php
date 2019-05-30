@@ -105,7 +105,7 @@ $BillingID = $_SESSION['BillingID'];
 #Query Booking Information
 $query = mysqli_query($connection, "SELECT * FROM Booking WHERE BillingID = '$BillingID'");
 while ($result = mysqli_fetch_array($query)) {
-    $BookingID = $result['BookingID'];
+    $BookingID[] = $result['BookingID'];
     $PassengerID[] = $result['PassengerID'];
     $SeatID[] = $result['SeatID'];
 }
@@ -222,7 +222,9 @@ while ($result1 = mysqli_fetch_array($paymentQuery)) {
             <h2><strong>Payment Success!</strong></h2>
             <p>
                 Billing ID : <?php echo $BillingID ?> <br>
-                Booking ID : <?php echo $BookingID ?>
+                <?php 
+                for($i = 0 ; $i < sizeof($BookingID) ; $i++)
+                echo "Booking ID : ".$BookingID[$i]."<br>" ?>
             </p>
         </div>
     </div>
@@ -331,7 +333,10 @@ while ($result1 = mysqli_fetch_array($paymentQuery)) {
     <form action="Index.php" method="">
         <div class="card-container col-md-8 mt-4 bottom-margin">
             <div class="card-body">
-                <h3><b>Booking ID : <?php echo $BookingID ?></b></h3>
+                <h3><b>Booking ID:
+                    <?php 
+                for($i = 0 ; $i < sizeof($BookingID) ; $i++)
+                echo $BookingID[$i]."  " ?></b></h3>
                 <hr>
                 <h4><b>Flight : <?php echo $_SESSION['dAirportName'] . " - " . $_SESSION['aAirportName'] ?></b></h4>
                 <table class="table">

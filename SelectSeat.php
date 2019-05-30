@@ -176,7 +176,7 @@ $RowQuery = mysqli_query($connection,"SELECT Row FROM AirplaneSeat WHERE Airplan
                     <ul id="selected-seats">
                     </ul>
                     <br>
-                    <button class="btn btn-primary" id="#button" onclick="sendData()">Checkout &raquo;</button>
+                    <button class="btn btn-secondary" id="#button" onclick="sendData()" disabled>Checkout &raquo;</button>
                     <div id="legend" style="top: 250px;"></div>
                 </div>
             </div>
@@ -225,6 +225,7 @@ $RowQuery = mysqli_query($connection,"SELECT Row FROM AirplaneSeat WHERE Airplan
     let data
 
     $(document).ready(function() {
+        
         var $cart = $('#selected-seats'),
             $counter = $('#counter'),
             $total = $('#total'),
@@ -317,6 +318,15 @@ $RowQuery = mysqli_query($connection,"SELECT Row FROM AirplaneSeat WHERE Airplan
             const doc = document.getElementById('seat-map')
             doc.style.pointerEvents = 'auto'
             data = sc.find('selected')
+            const proceedBtn = document.getElementById('#button')
+
+            if(sc.find('selected').length != numberOfPassenger) {
+                proceedBtn.style.backgroundColor = 'grey'
+                proceedBtn.disabled = true
+            } else {
+                proceedBtn.style.backgroundColor = '#0069d9'
+                proceedBtn.disabled = false
+            }
 
         });
 
@@ -326,11 +336,27 @@ $RowQuery = mysqli_query($connection,"SELECT Row FROM AirplaneSeat WHERE Airplan
             // console.log(curSeat, numberOfPassenger, sc.find('selected'))
 
             const doc = document.getElementById('seat-map')
-            if (curSeat == numberOfPassenger) doc.style.pointerEvents = 'none'
-            else doc.style.pointerEvents = 'auto'
+            if (curSeat == numberOfPassenger){
+                doc.style.pointerEvents = 'none'
+            }
+            else{
+                doc.style.pointerEvents = 'auto'
+            }
             data = sc.find('selected')
 
+            console.log(sc.find('selected').length)
+            const proceedBtn = document.getElementById('#button')
+
+            if(sc.find('selected').length != numberOfPassenger) {
+                proceedBtn.style.backgroundColor = 'grey'
+                proceedBtn.disabled = true
+            } else {
+                proceedBtn.disabled = false
+                proceedBtn.style.backgroundColor = '#0069d9'
+            }
+
         })
+        
 
         //let's pretend some seats have already been booked
 
@@ -390,14 +416,11 @@ $RowQuery = mysqli_query($connection,"SELECT Row FROM AirplaneSeat WHERE Airplan
         }
     });
 
-    if(cart.length != numberOfPassenger)
-    {
-        document.getElementById("Button").disabled = true;
-    }
-    else{
-        document.getElementById("Button").disabled = false;
-    }
 
+
+
+    
+  
     function sendData() { //send seat data to next page
         let queryStringArr = ''
         data.seatIds.forEach((e, i) => {
@@ -408,6 +431,7 @@ $RowQuery = mysqli_query($connection,"SELECT Row FROM AirplaneSeat WHERE Airplan
                 queryStringArr += `${e},`
             }
         })
+
         console.log(data.seatIds)
         const urlEndpoint = `PassengerDetail.php?data=${queryStringArr}`
         console.log(urlEndpoint)
