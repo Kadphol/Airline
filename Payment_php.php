@@ -53,6 +53,11 @@ $PaymentFee = 77.88;
 $Today = date("Y-m-d");
 $ExpiredDate = $Month."/".$Year;
 
+#CREATE SESSION
+$_SESSION['AirportTax'] = $AirportTax;
+$_SESSION['PaymentFee'] = $PaymentFee;
+$_SESSION['DateToday'] = $Today;
+
 #INSERT TO PAYMENTMETHOD
 $sql = "INSERT INTO PaymentMethod (CardNo,CardType,ExpiredDate,CVV)
     VALUES('$CardNo','$CardType','$ExpiredDate','$CVV')";
@@ -83,6 +88,9 @@ $query3 = mysqli_query($connection,"SELECT MAX(BillingID) FROM Billing");
 while ($result3 = mysqli_fetch_array($query3)) {
     $BillingID = $result3['MAX(BillingID)'];
 }
+
+$_SESSION['Today'] = $Today;
+$_SESSION['BillingID'] = $BillingID;
 
 
 for ($i = 0; $i < sizeof($FirstName); $i++){
