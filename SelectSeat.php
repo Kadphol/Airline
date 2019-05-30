@@ -46,6 +46,8 @@ if (isset($_POST['login'])) {
         exit('please check your input');
     }
 }
+
+
 $_SESSION['AddOnName'] = $_GET['AddOnName'];
 
 $FlightID =  $_SESSION['FlightID'];
@@ -58,6 +60,47 @@ $DepartureDate = $_SESSION['DepartureDate'];
 $ReturnDate = $_SESSION['ReturnDate'];
 $NumberOfPassenger = $_SESSION['NumberOfPassenger'];
 $Class = $_SESSION['Class'];
+
+
+#QUERY ROW CLASS IN AIRPLANE (FLIGHT)
+$RowQuery = mysqli_query($connection,"SELECT Row FROM AirplaneSeat WHERE AirplaneID IN(
+    SELECT AirplaneID FROM Flight WHERE FlightID = '$FlightID')");
+    while($result=mysqli_fetch_array($RowQuery)) {
+        $Row[] = $result['Row'];
+    }
+
+    for ($i = 0 ; $i < 3; $i++) 
+    {
+    $split[$i]=explode("-",$Row[$i]);
+    }
+
+    for ($j = 0 ; $j < 3; $j++) 
+    {
+        for($k = 0; $k < 2 ; $k++)
+        {
+            //echo $split[$j][$k];
+            $splitrowclass[$j][$k]=explode("0",$split[$j][$k]);
+
+            
+        }
+   
+    }
+        
+    $firstClassInitial = $splitrowclass[0][0][1];
+    $firstClassEnd = $splitrowclass[0][1][1];
+
+    $businessInitial = $splitrowclass[1][0][1];
+    $businessEnd = $splitrowclass[1][1][1];
+
+    $economyInitial = $splitrowclass[2][0][1];
+    $economyEnd = $splitrowclass[2][1][1];
+
+
+    #QUERY UNAVALIABLE SEAT
+    $SeatQuery = mysqli_query($connection,"SELECT Seat FROM Flight WHERE FlightID = '$FlightID'");
+    while($result1=mysqli_fetch_array($SeatQuery)) {
+        $unavailableseat = $result1['Seat'];
+    }
 ?>
 
 <html>
@@ -79,11 +122,6 @@ $Class = $_SESSION['Class'];
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="Mybooking.php">Manage Booking</a>
-                    </li>
-                </ul>
                 <ul class="navbar-nav ml-auto nav-flex-icons">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -128,6 +166,7 @@ $Class = $_SESSION['Class'];
 
             <h1><b>Select Seat</b></h1>
             <hr>
+
             <div class="container d-flex justify-content-center">
                 <div id="seat-map">
                     <div class="front-indicator" style="margin-left:55px;">Front</div>
@@ -138,7 +177,7 @@ $Class = $_SESSION['Class'];
                     <ul id="selected-seats">
                     </ul>
                     <br>
-                    <button class="btn btn-primary" onclick="sendData()">Checkout &raquo;</button>
+                    <button class="btn btn-primary" id="#button" onclick="sendData()">Checkout &raquo;</button>
                     <div id="legend" style="top: 250px;"></div>
                 </div>
             </div>
@@ -240,6 +279,7 @@ $Class = $_SESSION['Class'];
                             .attr('id', 'cart-item-' + this.settings.id)
                             .data('seatId', this.settings.id)
                             .appendTo($cart);
+                            
 
                         /*
                          * Lets update the counter and total
@@ -295,16 +335,19 @@ $Class = $_SESSION['Class'];
         //let's pretend some seats have already been booked
 
         //initial row for each class 
-        var firstClassInitial = 1;
-        var firstClassEnd = 2;
+        var firstClassInitial = <?php echo $firstClassInitial ?>,
+            firstClassEnd = <?php echo $firstClassEnd ?>,
+            businessInitial = <?php echo $businessInitial ?>,
+            businessEnd = <?php echo $businessEnd ?>,
+            economyInitial = <?php echo $economyInitial ?>,
+            economyEnd = <?php echo $economyEnd ?>,
+            unavailableseat = [<?php echo $unavailableseat?>];
 
-        var businessInitial = 3;
-        var businessEnd = 4;
-
-        var economyInitial = 5;
-        var economyEnd = 8;
-
-
+        for(i=0;i<unavailableseat.length;i++)
+        {
+            sc.get([unavailableseat[i]]).status('unavailable');
+        }
+    
         if (selectedClass == 'First') { //firstclass
             for ($z = businessInitial; $z <= businessEnd; $z++) {
                 $i = '0' + $z;
@@ -347,6 +390,13 @@ $Class = $_SESSION['Class'];
         }
     });
 
+    if(cart.length != numberOfPassenger)
+    {
+        document.getElementById("Button").disabled = true;
+    }
+    else{
+        document.getElementById("Button").disabled = false;
+    }
 
     function sendData() {
         let queryStringArr = ''
